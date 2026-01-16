@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "polar-land-471406-c5",
+  "private_key_id": "76ffb96866218ac7b90f2e8ec0709a7941666776",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDZia4ci+mOY/lH\nPSuiITOJ1tpx0BJHzupT2nhLxd5FIRIBYXDH5WCyrQJmI7Za/W7kZRqv/FNg2Y3r\n3EpO+a49BUEG0NfhCQydeO/YjmBWDlTajNs9izovB/f6Ji+rNrbtSxpbVSyvGL7G\n5R/iZLFfa3jQiFhzU/aHommDBW2Ub9Po0GQNDGjegHdJICjHKrwO2MUTN+dYrVKg\nuZw3/jzbVO6LqgLwtOqA31zp0OQVgLl/LHQdhCR3AtRY/9pp+dqAMOO/M1wgP/vS\nOJbhOlX0ERS5ReUxrm3lb5GyjA9o/4jx0yQEuBkf4sr5WhcXDdUe/jkE/ZRVUtRo\ne2ph2UWjAgMBAAECggEALgrM9i/KxB920FQrGwqp7N+zpmkipV4vDIZt9aOwkrMY\nK4CjLTvoRokFu/aNDx8azG51wo/GWfZR6nzaoXKJJVMqWzXyqyeOKvpA0XX4/93S\nqdssQA9qxi+KlcBlUHipKPo/XttdNMYpAtHV+MXVINwPWxuwlOBNipGegWOxuLu6\nlozc4xaDPNbaclL5gBfyZfF9GMoov5vqF/kxuZaUxw+rAUtDBMLVyJoByP5wJaVu\nJqGzpKbUg0Euc54HRuWSTC2Y8G4zRJK8buslwgwdQ8g/EaRtEuFDbdf3R2T51xsR\nj5MJXcuY2Gb6+sZYqWNjhJudeILkCeIb6fzDw1+teQKBgQDv8L3Wx4K/n4jl+VWk\nASso3SiFSdYNZHrkqA221zhvMB/7gotxcL2HcskkiVqGoLnfVfAitbfHPbvXW8q6\npBg9WuNUCYS5ONgdI2sWo2RTbr46QTOScBizAL4BHgcpWcoOo22zkBhmU0VdQADS\n5yAnGwbAp6i+o10KIBFRKiMpPQKBgQDoGRTeg8zViIezsQbakrOVX7ghCMEvGDqX\nrvjmKDyrlmrbgVXbKAu3E3rQxB6Rf/gA731/quUOELxRJq/uRqZndmZKOSPawVmR\nBv39f00LNyK0fTYra9oCvVtpNRRjUTVazw8RPs62QCICAJBBqebVmmppSKw2cclj\nqsCylSBYXwKBgDkuA++lSBFmcXdsve4BoUlxuvBYsjwqz+ah7fK+w2Ir89M6PwTf\nuysGPc0JNpuSvfjtP/blm1BN8+/UnjFwXZ5xhG9IfWquk0IOaLzSX1xKreawFxw0\nvo4aBS26/DXsgeyPIduC4W2xNnyMfiXEkrL/C9LpoZscz1VUYwwWoJ55AoGAKAwL\n2ckMEtwX7h1hfV1Ktz9o2epUyvd3RKzgLXZL4Z92mKFcWxAx1Uj7LAJq89gMxryL\n/vdRxneExsvSF18BX2DCjZQGZ7xs4+U89fx9Iq5EwrfIHP3jBA4AM8sA1ZIxjpWj\nl+oqaK/wLkBCo9HZDooySjBL5qkDgrr3vNiWWCkCgYAH71UppXWfHU1TsXS0Iskh\ncAwx/sLrrw8sUxn2AtczpjDmHxgdTtYnKM+wVEz4s/dlK/uKBgcKM2Yu+qJOlQFR\n1k1Tk6hED2aLDZ302sGOETt4CCmnI9b77/y0BdO7il/dVF+bJgaoPamYLAMfUzhM\nJRWWHHPUz0E88UokSQGbuQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "speech-service@polar-land-471406-c5.iam.gserviceaccount.com",
+  "client_id": "101717730340600361150",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/speech-service%40polar-land-471406-c5.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

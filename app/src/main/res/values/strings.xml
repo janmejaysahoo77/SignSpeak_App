@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">SignSpeak</string>
+    <string name="welcome_title">👉 WELCOME TO\nSIGN SPEAK 👈</string>
+    <string name="speech_to_gesture">Speech to Gesture</string>
+    <string name="gesture_to_speech">Gesture to Speech</string>
+    <string name="learn_sign_language">Learn Sign Language</string>
+    <string name="no_alerts">No new alerts</string>
+    <string name="character_image">Character Image</string>
+    <string name="alarm_icon">Alarm Icon</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="Home"
+        android:icon="@drawable/icon__3_"
+        android:id="@+id/homeFragment"
+        android:iconTint="@color/white"/>
+    <item android:title="Speech To Gesture"
+        android:icon="@drawable/speak_icon"
+        android:id="@+id/speechToGestureFragment"
+        android:iconTint="@color/white"
+        />
+    <item android:title="Gesture To Speech"
+        android:icon="@drawable/baseline_accessibility_new_24"
+        android:id="@+id/gestureToSpeechFragment"
+        android:iconTint="@color/white"/>
+
+    <item android:title="Consult Docter"
+        android:icon="@drawable/baseline_local_hospital_24"
+        android:id="@+id/appointmentFragment"
+        android:iconTint="@color/white"/>
+
+
+    <item android:title="Laern Sign Language"
+        android:icon="@drawable/learnsign"
+        android:id="@+id/learnSignLanguageFragment"
+        android:iconTint="@color/white"/>
+</menu>

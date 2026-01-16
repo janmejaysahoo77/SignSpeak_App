@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.signspeak.Fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/speechToGestureFragment"
+        android:name="com.example.signspeak.Fragment.SpeechToGestureFragment"
+        android:label="fragment_speech_to_gesture"
+        tools:layout="@layout/fragment_speech_to_gesture" />
+    <fragment
+        android:id="@+id/gestureToSpeechFragment"
+        android:name="com.example.signspeak.Fragment.GestureToSpeechFragment"
+        android:label="fragment_gesture_to_speech"
+        tools:layout="@layout/fragment_gesture_to_speech" />
+    <fragment
+        android:id="@+id/learnSignLanguageFragment"
+        android:name="com.example.signspeak.Fragment.LearnSignLanguageFragment"
+        android:label="fragment_learn_sign_language"
+        tools:layout="@layout/fragment_learn_sign_language" />
+    <fragment
+        android:id="@+id/appointmentFragment"
+        android:name="com.example.signspeak.Fragment.AppointmentFragment"
+        android:label="fragment_appointment"
+        tools:layout="@layout/fragment_appointment" />
+</navigation>

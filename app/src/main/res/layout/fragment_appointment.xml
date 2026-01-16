@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A1A44"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Consult a Doctor"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get expert medical help instantly"
+            android:textColor="#B0C3FF"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Featured Doctor Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:background="@drawable/rounded_white"
+            android:elevation="4dp">
+
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/dr_one"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/rounded_white"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:text="Dr. Evelyn Reed"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#0A1A44"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:text="General Physician"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#555"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:text="● Online"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="#07C060"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnConsultNow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consult Now"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:backgroundTint="#2E5BFF"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+        <!-- Search bar -->
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Search symptoms..."
+            android:padding="14dp"
+            android:background="@drawable/rounded_search"
+            android:textColor="@android:color/white"
+            android:textColorHint="#B0C3FF"
+            android:drawableStart="@drawable/baseline_search_24"
+            android:drawablePadding="12dp"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- ✅ FIXED GRID (Now using TableLayout 3 columns) -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*"
+            android:stretchColumns="*"
+            android:layout_marginBottom="20dp">
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category2"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category3"/>
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category4"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category5"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                    <include layout="@layout/item_category6"/>
+                </LinearLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <!-- Top Doctors -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Top Doctors"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- Doctor cards -->
+        <include layout="@layout/item_doctor"/>
+        <include layout="@layout/item_doctor_2"/>
+
+        <!-- Emergency Card -->
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_emergency">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/baseline_emergency_24"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:text="Emergency? Call 108 immediately"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="#B00020"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/btnCallEmergency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Call Now"
+                android:backgroundTint="#E53935"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="12dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

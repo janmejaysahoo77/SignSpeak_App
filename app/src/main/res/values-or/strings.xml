@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_title">👉 ସ୍ୱାଗତମ୍\nସାଇନ୍ ସ୍ପିକ୍ 👈</string>
+    <string name="speech_to_gesture">କଥା ରୁ ଠାର</string>
+    <string name="gesture_to_speech">ଠାର ରୁ କଥା</string>
+    <string name="learn_sign_language">ଠାର ଭାଷା ଶିଖନ୍ତୁ</string>
+    <string name="no_alerts">କୌଣସି ନୂତନ ସତର୍କ ନାହିଁ</string>
+    <string name="character_image">ଚରିତ୍ର ଛବି</string>
+    <string name="alarm_icon">ଆଲାର୍ମ ଆଇକନ୍</string>
+</resources>

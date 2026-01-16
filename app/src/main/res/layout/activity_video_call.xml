@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    >
+
+    <!-- Remote Video (Doctor) -->
+    <FrameLayout
+        android:id="@+id/remoteVideoContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signAnimationContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#000" />
+
+    <!-- ⭐ LOCAL VIDEO PREVIEW (MISSING BEFORE) -->
+    <FrameLayout
+        android:id="@+id/localVideoContainer"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_margin="16dp"
+        android:background="#222"
+        app:layout_constraintTop_toTopOf="@id/remoteVideoContainer"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Sign Animation Section -->
+    <LinearLayout
+        android:id="@+id/signAnimationContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#0D204F"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/remoteVideoContainer"
+        app:layout_constraintBottom_toTopOf="@+id/controlPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/tvSignTitle"
+            android:text="Sign Interpretation"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="12dp"/>
+
+        <ImageView
+            android:id="@+id/signAnimationView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/character"
+            android:scaleType="centerInside"/>
+    </LinearLayout>
+
+    <!-- Call Controls -->
+    <LinearLayout
+        android:id="@+id/controlPanel"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#1A2F63"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/btnMute"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            app:tint="#fff"
+            android:src="@drawable/rounded_adaptive_audio_mic_24"
+            android:layout_marginRight="20dp"/>
+
+        <ImageView
+            android:id="@+id/btnEndCall"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:src="@drawable/outline_add_call_24"
+            android:backgroundTint="#E53935"
+            app:tint="#fff"
+            android:layout_marginRight="20dp"/>
+
+        <ImageView
+            android:id="@+id/btnSwitchCamera"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="10dp"
+            android:src="@drawable/outline_add_a_photo_24"
+            app:tint="#fff"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

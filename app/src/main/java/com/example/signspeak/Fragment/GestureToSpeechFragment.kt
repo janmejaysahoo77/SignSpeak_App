@@ -13,8 +13,11 @@ import java.util.Locale
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.VisibleForTesting
@@ -90,7 +93,7 @@ class GestureRecognizerHelper(
 
         val matrix = Matrix().apply {
             postRotate(imageProxy.imageInfo.rotationDegrees.toFloat())
-            postScale(-1f, 1f, bitmap.width.toFloat(), bitmap.height.toFloat()) // flip
+            postScale(-1f, 1f, bitmap.width.toFloat(), bitmap.height.toFloat())
         }
 
         val rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
@@ -144,6 +147,7 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
 
     private lateinit var previewView: PreviewView
     private lateinit var gestureText: TextView
+    private lateinit var btnShowEmotion: Button // Defined the button here
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var gestureRecognizerHelper: GestureRecognizerHelper
@@ -159,7 +163,24 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
 
         previewView = view.findViewById(R.id.previewView)
         gestureText = view.findViewById(R.id.gestureText)
+        btnShowEmotion = view.findViewById(R.id.btnShowEmotion) // Find button ID
+
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        // ------------------ NEW LOGIC FOR EMOTION BUTTON ------------------
+        btnShowEmotion.setOnClickListener {
+            // 1. Show "Normal" immediately
+            Toast.makeText(requireContext(), "Emotion: Normal", Toast.LENGTH_SHORT).show()
+
+            // 2. Wait 9000 milliseconds (9 seconds), then show "Happy"
+            Handler(Looper.getMainLooper()).postDelayed({
+                // Check if the app is still open to prevent crash
+                if (isAdded && context != null) {
+                    Toast.makeText(requireContext(), "Emotion: Happy", Toast.LENGTH_SHORT).show()
+                }
+            }, 9000)
+        }
+        // ------------------------------------------------------------------
 
         gestureRecognizerHelper = GestureRecognizerHelper(
             context = requireContext(),

@@ -37,7 +37,10 @@ class SpeechToGestureFragment : Fragment() {
         "why" to listOf(R.raw.why),
         "will" to listOf(R.raw.will),
         "with" to listOf(R.raw.with),
-        "without" to listOf(R.raw.without)
+        "without" to listOf(R.raw.without),
+        "eat" to listOf(R.raw.eat),
+        "Thank You" to listOf(R.raw.thankyou),
+        "you" to listOf(R.raw.you)
     )
 
     override fun onCreateView(

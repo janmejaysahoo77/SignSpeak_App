@@ -1,123 +1,244 @@
-# 🧏‍♂️ SignSpeak — Assistive Communication App
+🧏‍♂️ SignSpeak Platform — Accessible Communication Ecosystem
 
-SignSpeak is an assistive communication Android application designed for deaf and mute individuals.  
-It helps users communicate more naturally using **Gesture → Speech**, **Speech → Gesture**, and **Sign Language Learning**, along with emergency SOS features.
+SignSpeak is a cross-platform accessibility initiative designed to assist deaf and mute individuals by enabling seamless communication through gesture recognition, speech synthesis, and sign language technologies.
 
----
+The ecosystem currently includes:
 
-## 🚀 Features
+✔ Android App — Assistive Communication
+✔ Doctor Telemedicine Website — Accessible Healthcare
+✔ Business/API Marketplace Website — SignSpeak+ APIs
 
-### 🎤 Speech → Gesture
-Convert spoken voice to sign-language gestures/animations.
+1️⃣ SignSpeak Android App — Assisted Communication
 
-### ✋ Gesture → Speech
-Detect hand gestures and convert them into spoken voice using TTS.
+A communication app allowing users to convert between Gesture ↔ Speech, learn sign language, and send SOS emergency alerts.
 
-### 📚 Learn Sign Language
-Interactive learning module for learning sign gestures.
+🚀 Core Features
 
-### 🆘 SOS Emergency Button
-- Plays emergency alarm tone
-- Vibrates device
-- Opens dialer with configured emergency number
+🎤 Speech → Gesture
 
-### 🔔 Alerts & Notification Bar
-Displays critical system/info alerts (e.g., medical or family messages)
+✋ Gesture → Speech (TTS)
 
-### 🌐 Firebase Authentication
-- Email/Password login & signup
-- Profile name synced with Firebase Auth
+📚 Learn Sign Language
 
-### 🔒 Secure Storage
-No user-sensitive data stored locally.
+🆘 SOS Emergency
 
-### 🌍 Multilingual Support
-- English (default)
-- Odia
-- User-selectable from in-app **Settings**
+🌍 English + Odia Language
 
----
+🔐 Firebase Auth
 
-## 🛠 Tech Stack
+🔔 Alerts & Notifications
 
-| Component | Technology |
-|---|---|
-| Language | Kotlin |
-| UI | XML + Material Components |
-| Navigation | Jetpack Navigation |
-| Auth | Firebase Authentication |
-| Database | Firebase Firestore (Upcoming) |
-| Notifications | Firebase Cloud Messaging (Upcoming) |
-| Audio | MediaPlayer API |
-| Gesture | MediaPipe (Upcoming) |
-| Speech | Android Speech Recognizer + TTS |
-| SOS System | Vibrator + Dialer Intent |
+🎯 High Accessibility UI
 
----
+📦 Tech Stack
+Area	Tech
+Language	Kotlin
+UI	XML + Material Components
+Auth	Firebase Auth
+Data	Firestore (Upcoming)
+Gesture	MediaPipe
+Speech	ASR + TTS
+SOS	Vibrator + Dialer Intent
+Build	Gradle
+🛠 Run Instructions (Android)
+1. Open in Android Studio
+2. Add google-services.json
+3. Sync Gradle
+4. Connect phone/emulator
+5. Run
 
-## 📁 Project Structure
 
-app/
-├─ java/com.example.signspeak/
-│ ├─ MainActivity.kt
-│ ├─ SettingActivity.kt
-│ ├─ fragments/
-│ │ ├─ HomeFragment.kt
-│ │ ├─ SpeechToGestureFragment.kt
-│ │ ├─ GestureToSpeechFragment.kt
-│ │ ├─ LearnSignFragment.kt
-│ └─ auth/
-│ ├─ LoginActivity.kt
-│ ├─ SignupActivity.kt
-│
-└─ res/
-├─ layout/
-├─ values/
-├─ values-or/
-├─ navigation/
-└─ drawable/
+Firebase required settings:
+✔ Enable Email/Password Auth
+✔ Add Firestore (optional)
 
-yaml
-Copy code
+2️⃣ Doctor Telemedicine Website — Accessible Healthcare
 
----
+A WebRTC-based real-time teleconsultation system enabling remote doctor-patient video consultations with accessibility support for deaf/mute users.
 
-## 📦 Prerequisites
+🎯 Purpose
 
-Before running:
+Reduce hospital visits
 
-✔ Android Studio Flamingo or newer  
-✔ Android SDK 24+  
-✔ Java JDK 17+  
-✔ Firebase Project created  
-✔ Active internet connection
+Provide remote consultations
 
----
+Support accessibility modalities
 
-## 🔧 Firebase Setup
+Enable doctor dashboard workflows
 
-1. Go to **Firebase Console**
-2. Create project → Add Android App
-3. Add package name (e.g. `com.example.signspeak`)
-4. Download `google-services.json`
-5. Place it in:
+🚀 Features
+👨‍⚕️ Doctor Portal (UI)
 
-app/src/google-services.json
+Login/Signup UI
 
-markdown
-Copy code
+Patient & appointment info
 
-6. Enable:
-✔ Authentication → Email/Password  
-✔ Firestore Database (Optional for now)
+Video call initiation
 
-7. Add dependencies in `build.gradle`:
+Session stats
 
-implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
-implementation("com.google.firebase:firebase-auth")
-implementation("com.google.firebase:firebase-firestore")
+📹 Video Call Room
 
-yaml
-Copy code
+WebRTC real-time communication
 
-8. Sync project
+Camera toggle
+
+Mic toggle
+
+End call
+
+Clean accessible UI
+
+🧏 Accessibility Enhancements
+
+Caption placeholder overlay
+
+Sign interpretation area (future)
+
+High contrast UI design
+
+🔐 Session Handling
+
+Session joins are channel-based
+
+Required Patient Channel:
+doctorchannel
+
+Doctor shares the same channel with patient.
+
+🛠 Tech Stack
+Layer	Technology
+Frontend	HTML + CSS + JavaScript
+Video	Agora WebRTC SDK
+Auth	UI-based (demo)
+State	LocalStorage
+Backend	None (prototype)
+📁 Project Structure
+doctor-video-call/
+├── DoctorPortal.html
+├── index.html
+└── README.md
+
+⚙️ Setup & Run
+git clone https://github.com/janmejaysahoo77/SignSpeak_App.git
+cd SignSpeak_App/doctor-video-call
+Open DoctorPortal.html in browser
+
+Agora Config
+
+Inside index.html:
+
+const AGORA_APP_ID = "YOUR_AGORA_APP_ID";
+const AGORA_TEMP_TOKEN = null;
+
+
+Token can be null for development.
+
+🧪 Current Status
+
+✔ UI complete
+✔ Dashboard functional
+✔ Video call working
+
+
+🔮 Future Roadmap
+
+Speech-to-text captions
+
+Sign language recognition overlay
+
+Encrypted token-based sessions
+
+Medical PDF sharing
+
+Integration with Android app
+
+3️⃣ SignSpeak+ — API Marketplace & Business Website
+
+A polished SaaS-style website for showcasing SignSpeak APIs and platform information.
+
+🚀 Core Features
+
+✔ 7 Complete Pages:
+Home / Products / Use Cases / Pricing / Dev Portal / About / Contact
+
+✔ Modern responsive UI
+✔ Tailwind + Vite + React 18
+✔ Framer Motion animations
+✔ Component architecture
+✔ Enterprise-facing branding
+
+📦 Tech Stack
+Category	Tech
+Framework	React 18
+Build Tool	Vite
+Styling	Tailwind CSS
+Animations	Framer Motion
+Routing	React Router
+🧱 Project Structure
+src/
+├── components/
+├── pages/
+├── App.jsx
+├── main.jsx
+└── index.css
+
+🛠 Setup & Run (Business Site)
+npm install
+npm run dev
+
+
+Production:
+
+npm run build
+npm run preview
+
+🌟 APIs Showcased
+
+Gesture → Speech API
+
+Speech → Gesture API
+
+Emotion Detection API
+
+Real-Time Translation API
+
+Video Call Accessibility API
+
+🎯 Use Cases
+
+Healthcare
+
+Government
+
+OTT & Media
+
+Education
+
+Smart Cities
+
+🧩 Ecosystem Summary
+Component	Platform	Status
+SignSpeak App	Android	✔ Active
+Doctor Telemedicine	Web	✔ Prototype
+SignSpeak+ Marketplace	Web	✔ Business UI
+Emotion Recognition	ML	⏳ Done
+Translation APIs	SaaS	⏳ Planned
+📍 Running Everything Together
+Module	Platform	Run Instructions
+Android App	Android Studio	Run
+Doctor Website	Browser	Open HTML
+API Marketplace	VS Code	npm run dev
+
+Channel required for Telemedicine:
+
+doctorchannel
+
+🧑‍💻 Team Credits
+
+Built by:
+
+Team Technovators 🚀
+
+
+

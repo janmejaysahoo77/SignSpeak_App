@@ -9,15 +9,20 @@
     android:background="@drawable/rounded_white"
     android:elevation="3dp">
 
+<!--    <ImageView-->
+<!--        android:layout_width="32dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        android:src="@drawable/dr_one" />-->
+
     <ImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/dr_one" />
+        android:src="@drawable/doctor_two" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="General Physician"
+        android:text="@string/doctor_catagory_one"
         android:textColor="#0A1A44"
         android:textSize="12sp"
         android:layout_marginTop="6dp"

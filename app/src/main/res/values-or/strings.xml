@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Welcome -->
     <string name="welcome_title">👉 ସ୍ୱାଗତମ୍\nସାଇନ୍ ସ୍ପିକ୍ 👈</string>
+
+    <!-- Home Modules -->
     <string name="speech_to_gesture">କଥା ରୁ ଠାର</string>
     <string name="gesture_to_speech">ଠାର ରୁ କଥା</string>
     <string name="learn_sign_language">ଠାର ଭାଷା ଶିଖନ୍ତୁ</string>
+
+    <!-- Alerts / Status -->
     <string name="no_alerts">କୌଣସି ନୂତନ ସତର୍କ ନାହିଁ</string>
+    <string name="doctor_status_online">● ଅନଲାଇନ୍</string>
+
+    <!-- Medical / Consult -->
+    <string name="consult_a_doctor">ଡାକ୍ତରଙ୍କ ସହ କଥା କରନ୍ତୁ</string>
+    <string name="consult_subtitle">ତୁରନ୍ତ ବିଶେଷଜ୍ଞ ସହାୟତା ପାଆନ୍ତୁ</string>
+    <string name="doctor_name_sample">ଡ଼ା. ଇଭଲିନ୍ ରିଡ୍</string>
+    <string name="doctor_speciality_sample">ଜେନେରାଲ୍ ଫିଜିସିଆନ୍</string>
+    <string name="consult_now">କଥା କରନ୍ତୁ</string>
+    <string name="search_symptoms_hint">ଲକ୍ଷଣ ଖୋଜନ୍ତୁ...</string>
+    <string name="top_doctors">ଶୀର୍ଷ ଡାକ୍ତରମାନେ</string>
+
+    <!-- Emergency -->
+    <string name="emergency_call_108">ଆପାତକାଳୀନ? ତୁରନ୍ତ 108 କଲ୍ କରନ୍ତୁ</string>
+    <string name="call_now">ଏବେ କଲ୍ କରନ୍ତୁ</string>
+
+    <!-- Generic UI -->
     <string name="character_image">ଚରିତ୍ର ଛବି</string>
     <string name="alarm_icon">ଆଲାର୍ମ ଆଇକନ୍</string>
+
+    <string name="doctor_catagory_one">ସାଧାରଣ ଡାକ୍ତର</string>
+    <string name="ayurveda">ଆୟୁର୍ବେଦ</string>
+    <string name="neurology">ନ୍ୟୁରୋଲୋଜି</string>
+    <string name="cardiology"> କାର୍ଡିଓଲୋଜି </string>
+    <string name="ophthalmology">ଚକ୍ଷୁ ବିଭାଗ</string>
+    <string name="dentist">ଦନ୍ତ ଡାକ୍ତର</string>
+    <string name="testsignlanguage">ଠାର ଭାଷା ପରୀକ୍ଷା</string>
+
 </resources>

@@ -1,10 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- App name (not translated) -->
     <string name="app_name" translatable="false">SignSpeak</string>
+
+    <!-- Welcome -->
     <string name="welcome_title">👉 WELCOME TO\nSIGN SPEAK 👈</string>
+
+    <!-- Home Modules -->
     <string name="speech_to_gesture">Speech to Gesture</string>
     <string name="gesture_to_speech">Gesture to Speech</string>
     <string name="learn_sign_language">Learn Sign Language</string>
+
+    <!-- Alerts / Status -->
     <string name="no_alerts">No new alerts</string>
+    <string name="doctor_status_online">● Online</string>
+
+    <!-- Medical / Consult -->
+    <string name="consult_a_doctor">Consult a Doctor</string>
+    <string name="consult_subtitle">Get expert medical help instantly</string>
+    <string name="doctor_name_sample">Dr. Shimran</string>
+    <string name="doctor_speciality_sample">General Physician</string>
+    <string name="consult_now">Consult Now</string>
+    <string name="search_symptoms_hint">Search symptoms...</string>
+    <string name="top_doctors">Top Doctors</string>
+
+    <!-- Emergency -->
+    <string name="emergency_call_108">Emergency? Call 108 immediately</string>
+    <string name="call_now">Call Now</string>
+
+    <!-- Generic UI -->
     <string name="character_image">Character Image</string>
     <string name="alarm_icon">Alarm Icon</string>
+
+    <string name="doctor_catagory_one">General Physician</string>
+    <string name="ayurveda">Ayurveda</string>
+    <string name="neurology">Neurology</string>
+    <string name="cardiology">Cardiology</string>
+    <string name="ophthalmology">Ophthalmology</string>
+    <string name="dentist">Dentist</string>
+    <string name="testsignlanguage">Test Sign Language</string>
+
+
+
+
 </resources>

@@ -13,6 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-google-services.json
 app/src/main/res/raw/speech_key.json
 *.json

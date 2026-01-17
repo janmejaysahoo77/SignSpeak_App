@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeleHealth Connect - Accessible Healthcare</title>
+  <style>
+        :root {
+            /* Color Palette */
+            --primary-color: #4F46E5;
+            --primary-hover: #4338CA;
+            --primary-light: #EEF2FF;
+            --secondary-color: #64748B;
+            --success-color: #10B981;
+            --danger-color: #EF4444;
+            --warning-color: #F59E0B;
+            
+            /* Neutral Colors */
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            
+            /* Semantic Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --text-primary: var(--gray-900);
+            --text-secondary: var(--gray-600);
+            --border-color: var(--gray-200);
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            
+            /* Typography */
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+        }
+        
+        body.dark {
+            --bg-primary: var(--gray-900);
+            --bg-secondary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --text-primary: var(--gray-50);
+            --text-secondary: var(--gray-400);
+            --border-color: var(--gray-700);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        body.dark .main {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        
+        body.dark .card {
+            background: rgba(31, 41, 55, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        body.dark .header {
+            background: rgba(31, 41, 55, 0.95);
+        }
+        
+        body.dark .sidebar {
+            background: rgba(31, 41, 55, 0.9);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Login Page */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-xl);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .login-header .logo {
+            display: inline-block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .login-header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 200ms ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        
+        .forgot-password {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 500;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            padding: 0.875rem var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+        
+        .btn-large {
+            width: 100%;
+            padding: 1rem var(--spacing-lg);
+            font-size: var(--font-size-lg);
+        }
+        
+        .btn-small {
+            padding: 0.5rem var(--spacing-md);
+            font-size: var(--font-size-sm);
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .btn-google {
+            width: 100%;
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-google:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-300);
+        }
+        
+        .divider {
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border-color);
+        }
+        
+        .divider span {
+            position: relative;
+            background: var(--bg-primary);
+            padding: 0 var(--spacing-md);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--spacing-md) var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .sidebar-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar-toggle:hover {
+            background: var(--gray-100);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            cursor: pointer;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        /* Layout */
+        .app-body {
+            display: flex;
+            min-height: calc(100vh - 73px);
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border-color);
+            padding: var(--spacing-xl);
+            transition: transform 200ms ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .sidebar.closed {
+            transform: translateX(-100%);
+        }
+        
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: none;
+            border: none;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 200ms ease;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .nav-item:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+        
+        .nav-item.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+        
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .main-content {
+            padding: var(--spacing-2xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+        
+        .page-header h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* Card */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-bottom: var(--spacing-xl);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card h2, .card h3 {
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+        
+        .card h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+        }
+        
+        .card h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        /* Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .featured-appointment {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: var(--spacing-2xl);
+        }
+        
+        .featured-appointment .card-header h2 {
+            color: white;
+        }
+        
+        .featured-appointment .badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .appointment-detail-content {
+            display: flex;
+            gap: var(--spacing-2xl);
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        .appointment-info {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-lg);
+        }
+        
+        .featured-appointment .info-row {
+            color: white;
+        }
+        
+        .info-row .label {
+            font-weight: 600;
+            min-width: 80px;
+        }
+        
+        .info-row .value {
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .appointments-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .appointment-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        
+        .appointment-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .appointment-item-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .appointment-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            flex-shrink: 0;
+        }
+        
+        .appointment-item-info h4 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .appointment-item-info p {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            background: var(--gray-50);
+        }
+        
+        .stat-value {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* Appointments Page */
+        .filter-tabs {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            border-bottom: 2px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: var(--spacing-md) var(--spacing-lg);
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-secondary);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 200ms ease;
+            margin-bottom: -2px;
+        }
+        
+        .filter-tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .filter-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .appointments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .appointment-card {
+            padding: var(--spacing-xl);
+        }
+        
+        .appointment-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .appointment-avatar-large {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--font-size-xl);
+            flex-shrink: 0;
+        }
+        
+        .appointment-card-info {
+            flex: 1;
+        }
+        
+        .appointment-card-info h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .appointment-reason {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .appointment-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .appointment-card-body .info-row {
+            font-size: var(--font-size-base);
+            color: var(--text-secondary);
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-primary {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+        
+        .badge-success {
+            background: #D1FAE5;
+            color: var(--success-color);
+        }
+        
+        /* Video Call */
+        .video-call-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+        
+        .video-grid {
+            position: relative;
+            background: var(--gray-900);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+        
+        .video-main {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .video-pane {
+            width: 100%;
+            height: 100%;
+            background: var(--gray-800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .video-remote {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .video-placeholder {
+            text-align: center;
+            color: white;
+        }
+        
+        .avatar-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 auto var(--spacing-md);
+        }
+        
+        .video-local {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 240px;
+            height: 180px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .video-placeholder-small {
+            text-align: center;
+            color: white;
+        }
+        
+        .avatar-medium {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto var(--spacing-sm);
+        }
+        
+        .captions-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-radius: var(--radius-md);
+            max-width: 80%;
+            text-align: center;
+            font-size: var(--font-size-xl);
+            line-height: 1.4;
+        }
+        
+        .call-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-lg);
+            padding: var(--spacing-xl);
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg);
+            background: var(--gray-100);
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 200ms ease;
+            min-width: 100px;
+        }
+        
+        .control-btn:hover {
+            background: var(--gray-200);
+            transform: translateY(-2px);
+        }
+        
+        .control-btn.active {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .control-btn-end {
+            background: var(--danger-color);
+            color: white;
+        }
+        
+        .control-btn-end:hover {
+            background: #DC2626;
+        }
+        
+        .control-btn span {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+        
+        .notes-section {
+            max-width: 800px;
+        }
+        
+        .notes-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-family: inherit;
+            margin-bottom: var(--spacing-md);
+            resize: vertical;
+        }
+        
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* Settings Page */
+        .settings-grid {
+            display: grid;
+            gap: var(--spacing-xl);
+        }
+        
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-lg) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        
+        .setting-item h3 {
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .setting-item p {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 28px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-300);
+            transition: 200ms;
+            border-radius: 28px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 200ms;
+            border-radius: 50%;
+        }
+        
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+        
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+        }
+        
+        .theme-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 200ms ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(20deg);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: var(--spacing-lg);
+        }
+        
+        .modal {
+            background: var(--bg-primary);
+            border-radius: var(--radius-xl);
+            max-width: 500px;
+            width: 100%;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--spacing-xl);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-header h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: var(--gray-100);
+        }
+        
+        .modal-form {
+            padding: var(--spacing-xl);
+        }
+        
+        .modal-body {
+            padding: var(--spacing-xl);
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--spacing-md);
+            padding: var(--spacing-xl);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 73px;
+                height: calc(100vh - 73px);
+                z-index: 99;
+            }
+            
+            .main-content {
+                padding: var(--spacing-lg);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .appointments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        // Application state
+        const state = {
+            currentUser: null,
+            currentView: 'signup',
+            appointments: [],
+            currentAppointment: null,
+            isInCall: false
+        };
+        
+        // Mock data
+        const mockAppointments = [
+            {
+                id: 1,
+                patientName: 'John Doe',
+                patientInitials: 'JD',
+                reason: 'Follow-up consultation',
+                date: '2024-01-15',
+                time: '10:00 AM',
+                status: 'confirmed',
+                signLanguageLevel: 'Intermediate'
+            },
+            {
+                id: 2,
+                patientName: 'Jane Smith',
+                patientInitials: 'JS',
+                reason: 'Initial consultation',
+                date: '2024-01-15',
+                time: '2:30 PM',
+                status: 'pending',
+                signLanguageLevel: 'Beginner'
+            },
+            {
+                id: 3,
+                patientName: 'Robert Johnson',
+                patientInitials: 'RJ',
+                reason: 'Prescription review',
+                date: '2024-01-16',
+                time: '9:00 AM',
+                status: 'confirmed',
+                signLanguageLevel: 'Advanced'
+            }
+        ];
+        
+        // Initialize
+        function init() {
+            checkAuth();
+            render();
+        }
+        
+        function checkAuth() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                state.currentUser = JSON.parse(savedUser);
+                state.currentView = 'dashboard';
+            }
+        }
+        
+        function render() {
+  const app = document.getElementById('app');
+
+            if (state.currentView === 'login' || state.currentView === 'signup') {
+                app.innerHTML = state.currentView === 'login' ? renderLogin() : renderSignup();
+                attachEventListeners();
+    } else {
+                app.innerHTML = renderApp();
+                attachEventListeners();
+            }
+        }
+        
+        function renderLogin() {
+            return `
+                <div class="login-container">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <div class="logo">🏥</div>
+                            <h1>TeleHealth Connect</h1>
+                            <p>Accessible Healthcare for Everyone</p>
+        </div>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required placeholder="doctor@example.com">
+        </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" required placeholder="Enter your password">
+        </div>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                            <button type="submit" class="btn btn-primary btn-large">Sign In</button>
+                            <div style="text-align: center; margin-top: var(--spacing-lg);">
+                                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Don't have an account?</p>
+                                <button type="button" class="btn btn-secondary btn-large" onclick="navigate('signup')">Sign Up</button>
+                            </div>
+                        </form>
+        </div>
+      </div>
+    `;
+        }
+        
+        function renderSignup() {
+            return `
+                <div class="login-container">
+                    <div class="login-card">
+                        <div class="login-header">
+                            <div class="logo">🏥</div>
+                            <h1>Create Account</h1>
+                            <p>Sign up to get started</p>
+          </div>
+                        <form id="signupForm">
+                            <div class="form-group">
+                                <label for="signupName">Full Name</label>
+                                <input type="text" id="signupName" required placeholder="Dr. John Smith">
+          </div>
+                            <div class="form-group">
+                                <label for="signupEmail">Email</label>
+                                <input type="email" id="signupEmail" required placeholder="doctor@example.com">
+        </div>
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                <input type="password" id="signupPassword" required placeholder="Create a password" minlength="6">
+            </div>
+                            <div class="form-group">
+                                <label for="signupConfirmPassword">Confirm Password</label>
+                                <input type="password" id="signupConfirmPassword" required placeholder="Confirm your password" minlength="6">
+          </div>
+                            <button type="submit" class="btn btn-primary btn-large">Sign Up</button>
+                            <div style="text-align: center; margin-top: var(--spacing-lg);">
+                                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">Already have an account?</p>
+                                <button type="button" class="btn btn-secondary btn-large" onclick="navigate('login')">Sign In</button>
+            </div>
+                        </form>
+              </div>
+            </div>
+            `;
+        }
+        
+        function renderApp() {
+            return `
+                <div class="header">
+                    <div class="header-left">
+                        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+                        <div class="logo">🏥 TeleHealth Connect</div>
+          </div>
+                    <div class="user-menu" onclick="showUserMenu()">
+                        <div class="user-avatar">${state.currentUser?.name?.charAt(0) || 'D'}</div>
+                        <span class="user-name">${state.currentUser?.name || 'Doctor'}</span>
+        </div>
+      </div>
+                <div class="app-body">
+                    <div class="sidebar" id="sidebar">
+                        <nav class="sidebar-nav">
+                            <button class="nav-item active" onclick="navigate('dashboard')">
+                                📊 Dashboard
+                            </button>
+                            <button class="nav-item" onclick="navigate('appointments')">
+                                📅 Appointments
+                            </button>
+                            <button class="nav-item" onclick="navigate('settings')">
+                                ⚙️ Settings
+                            </button>
+                            <button class="nav-item" onclick="logout()">
+                                🚪 Logout
+                            </button>
+                        </nav>
+                    </div>
+                    <div class="main">
+                        <div class="main-content">
+                            ${renderCurrentView()}
+            </div>
+          </div>
+        </div>
+      `;
+        }
+        
+        function renderCurrentView() {
+            switch (state.currentView) {
+                case 'dashboard':
+                    return renderDashboard();
+                case 'appointments':
+                    return renderAppointments();
+                case 'appointment-detail':
+                    return renderAppointmentDetail();
+                case 'video-call':
+                    return renderVideoCall();
+                case 'settings':
+                    return renderSettings();
+                default:
+                    return renderDashboard();
+            }
+        }
+        
+        function renderDashboard() {
+            const upcoming = mockAppointments.filter(a => a.status === 'confirmed').slice(0, 1);
+            const appointment = upcoming[0] || mockAppointments[0];
+            
+            return `
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card featured-appointment">
+                        <div class="card-header">
+                            <h2>Next Appointment</h2>
+                            <span class="badge badge-success">${appointment?.status || 'Confirmed'}</span>
+                        </div>
+                        <div class="appointment-detail-content">
+                            <div class="appointment-info">
+                                <div class="info-row">
+                                    <span class="label">Patient:</span>
+                                    <span class="value">${appointment?.patientName || 'N/A'}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Date:</span>
+                                    <span class="value">${appointment?.date || 'N/A'}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Time:</span>
+                                    <span class="value">${appointment?.time || 'N/A'}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Reason:</span>
+                                    <span class="value">${appointment?.reason || 'N/A'}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+      <div class="card">
+                        <h2>Today's Statistics</h2>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">${mockAppointments.length}</div>
+                                <div class="stat-label">Total Appointments</div>
+          </div>
+                            <div class="stat-item">
+                                <div class="stat-value">${mockAppointments.filter(a => a.status === 'confirmed').length}</div>
+                                <div class="stat-label">Confirmed</div>
+        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>Upcoming Appointments</h2>
+                    <div class="appointments-list">
+                        ${mockAppointments.slice(0, 3).map(apt => `
+                            <div class="appointment-item" onclick="viewAppointment(${apt.id})">
+                                <div class="appointment-item-content">
+                                    <div class="appointment-avatar">${apt.patientInitials}</div>
+                                    <div class="appointment-item-info">
+                                        <h4>${apt.patientName}</h4>
+                                        <p>${apt.date} at ${apt.time} • ${apt.reason}</p>
+                                    </div>
+                                </div>
+                                <span class="badge ${apt.status === 'confirmed' ? 'badge-success' : 'badge-primary'}">${apt.status}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+      </div>
+    `;
+        }
+        
+        function renderAppointments() {
+            return `
+                <div class="page-header">
+                    <h1>Appointments</h1>
+          </div>
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterAppointments('all')">All</button>
+                    <button class="filter-tab" onclick="filterAppointments('confirmed')">Confirmed</button>
+                    <button class="filter-tab" onclick="filterAppointments('pending')">Pending</button>
+            </div>
+                <div class="appointments-grid">
+                    ${mockAppointments.map(apt => `
+                        <div class="card appointment-card" onclick="viewAppointment(${apt.id})">
+                            <div class="appointment-card-header">
+                                <div class="appointment-avatar-large">${apt.patientInitials}</div>
+                                <div class="appointment-card-info">
+                                    <h3>${apt.patientName}</h3>
+                                    <p class="appointment-reason">${apt.reason}</p>
+          </div>
+                            </div>
+                            <div class="appointment-card-body">
+                                <div class="info-row">
+                                    <span class="label">Date:</span>
+                                    <span class="value">${apt.date}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Time:</span>
+                                    <span class="value">${apt.time}</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Sign Language:</span>
+                                    <span class="value">${apt.signLanguageLevel}</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="badge ${apt.status === 'confirmed' ? 'badge-success' : 'badge-primary'}">${apt.status}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+        </div>
+      `;
+        }
+        
+        function renderAppointmentDetail() {
+            const apt = state.currentAppointment || mockAppointments[0];
+            return `
+                <div class="page-header">
+                    <button class="btn btn-secondary" onclick="navigate('appointments')">← Back</button>
+                    <h1>Appointment Details</h1>
+                </div>
+      <div class="card">
+                    <div class="appointment-card-header">
+                        <div class="appointment-avatar-large">${apt.patientInitials}</div>
+                        <div class="appointment-card-info">
+                            <h3>${apt.patientName}</h3>
+                            <p class="appointment-reason">${apt.reason}</p>
+          </div>
+            </div>
+                    <div class="appointment-card-body">
+                        <div class="info-row">
+                            <span class="label">Date:</span>
+                            <span class="value">${apt.date}</span>
+          </div>
+                        <div class="info-row">
+                            <span class="label">Time:</span>
+                            <span class="value">${apt.time}</span>
+        </div>
+                        <div class="info-row">
+                            <span class="label">Sign Language Level:</span>
+                            <span class="value">${apt.signLanguageLevel}</span>
+            </div>
+                        <div class="info-row">
+                            <span class="label">Status:</span>
+                            <span class="value"><span class="badge ${apt.status === 'confirmed' ? 'badge-success' : 'badge-primary'}">${apt.status}</span></span>
+                </div>
+                        <div class="info-row" id="channel-info" style="display: none;">
+                            <span class="label">Channel:</span>
+                            <div style="display: flex; align-items: center; gap: var(--spacing-sm); flex: 1;">
+                                <span class="value" id="channel-name" style="font-family: monospace; background: var(--gray-100); padding: 4px 8px; border-radius: 4px; flex: 1;"></span>
+                                <button class="btn btn-secondary btn-small" onclick="copyChannelName()" id="copy-channel-btn">Copy</button>
+                </div>
+              </div>
+            </div>
+                    <div style="margin-top: var(--spacing-xl);">
+                        <button class="btn btn-primary btn-large" onclick="startVideoCall(${apt.id})">Start Video Call</button>
+                        <div style="margin-top: var(--spacing-md); padding: var(--spacing-md); background: var(--primary-light); border-radius: var(--radius-md); font-size: var(--font-size-sm); color: var(--text-secondary);">
+                            <strong>Note:</strong> When you start the call, a new window will open. Share the channel name with the patient so they can join from their mobile app.
+          </div>
+        </div>
+                </div>
+            `;
+        }
+        
+        function renderVideoCall() {
+            const apt = state.currentAppointment || mockAppointments[0];
+            return `
+                <div class="video-call-container">
+                    <div class="video-grid">
+                        <div class="video-pane video-remote">
+                            <div class="video-placeholder">
+                                <div class="avatar-large">${apt.patientInitials}</div>
+                                <div>${apt.patientName}</div>
+                            </div>
+                        </div>
+                        <div class="video-local">
+                            <div class="video-pane">
+                                <div class="video-placeholder-small">
+                                    <div class="avatar-medium">${state.currentUser?.name?.charAt(0) || 'D'}</div>
+                                    <div>You</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="captions-overlay">
+                            Sign language interpretation will appear here
+                        </div>
+                    </div>
+                    <div class="call-controls">
+                        <button class="control-btn" onclick="toggleMute()">
+                            🔇 <span>Mute</span>
+                        </button>
+                        <button class="control-btn" onclick="toggleVideo()">
+                            📹 <span>Video</span>
+                        </button>
+                        <button class="control-btn control-btn-end" onclick="endCall()">
+                            📞 <span>End Call</span>
+                        </button>
+                    </div>
+                    <div class="card notes-section">
+                        <h2>Session Notes</h2>
+                        <textarea class="notes-textarea" placeholder="Add notes during or after the call..."></textarea>
+                        <button class="btn btn-primary" onclick="saveNotes()">Save Notes</button>
+                    </div>
+      </div>
+    `;
+  }
+
+        function renderSettings() {
+            return `
+                <div class="page-header">
+                    <h1>Settings</h1>
+                </div>
+      <div class="card">
+                    <h2>Profile</h2>
+                    <div class="settings-form">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" value="${state.currentUser?.name || 'Doctor'}" id="userName">
+        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" value="${state.currentUser?.email || ''}" id="userEmail">
+        </div>
+                        <button class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+        </div>
+          </div>
+                <div class="card">
+                    <h2>Preferences</h2>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div>
+                                <h3>Dark Mode</h3>
+                                <p>Switch to dark theme</p>
+        </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="darkMode" onchange="toggleDarkMode()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+      </div>
+    `;
+  }
+
+        function attachEventListeners() {
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', handleLogin);
+            }
+            
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', handleSignup);
+            }
+        }
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                state.currentUser = {
+                    name: user.name,
+                    email: user.email
+                };
+                localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+                state.currentView = 'dashboard';
+                render();
+            } else {
+                alert('Invalid email or password. Please try again or sign up.');
+            }
+        }
+        
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            // Validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long!');
+                return;
+            }
+            
+            // Get existing users
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            // Check if user already exists
+            if (users.find(u => u.email === email)) {
+                alert('An account with this email already exists. Please sign in instead.');
+                return;
+            }
+            
+            // Add new user
+            const newUser = {
+                name: name,
+                email: email,
+                password: password
+            };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Redirect to sign in page
+            alert('Account created successfully! Please sign in to continue.');
+            state.currentView = 'login';
+            render();
+        }
+        
+        function navigate(view) {
+            state.currentView = view;
+            render();
+        }
+        
+        // Make functions available globally for onclick handlers
+        window.navigate = navigate;
+        
+        function viewAppointment(id) {
+            state.currentAppointment = mockAppointments.find(a => a.id === id);
+            state.currentView = 'appointment-detail';
+            render();
+        }
+        window.viewAppointment = viewAppointment;
+        
+        function startVideoCall(id) {
+            state.currentAppointment = mockAppointments.find(a => a.id === id);
+            if (!state.currentAppointment) {
+                alert('Appointment not found');
+                return;
+            }
+            
+            // Generate channel name from appointment
+            const channelName = `appointment_${id}_${state.currentAppointment.patientName.replace(/\s+/g, '_')}`;
+            
+            // Store channel name for later use
+            state.currentChannel = channelName;
+            
+            // Open index.html in a new window with the channel name
+            const videoCallUrl = `index.html?channel=${encodeURIComponent(channelName)}`;
+            const videoWindow = window.open(videoCallUrl, '_blank', 'width=1200,height=800,resizable=yes,scrollbars=yes');
+            
+            // Update state
+            state.currentView = 'appointment-detail';
+            state.isInCall = true;
+            
+            // Show channel info in the appointment detail
+            setTimeout(() => {
+                const channelInfo = document.getElementById('channel-info');
+                const channelNameEl = document.getElementById('channel-name');
+                if (channelInfo && channelNameEl) {
+                    channelInfo.style.display = 'flex';
+                    channelNameEl.textContent = channelName;
+                }
+            }, 100);
+            
+            render();
+            
+            // Show notification with channel info
+            alert(`Opening video call with ${state.currentAppointment.patientName}.\n\nChannel Name: ${channelName}\n\nPlease share this channel name with the patient so they can join from their mobile app.`);
+        }
+        window.startVideoCall = startVideoCall;
+        
+        function copyChannelName() {
+            const channelName = document.getElementById('channel-name')?.textContent;
+            if (channelName) {
+                navigator.clipboard.writeText(channelName).then(() => {
+                    const btn = document.getElementById('copy-channel-btn');
+                    if (btn) {
+                        const originalText = btn.textContent;
+                        btn.textContent = 'Copied!';
+                        btn.style.background = 'var(--success-color)';
+                        btn.style.color = 'white';
+                        setTimeout(() => {
+                            btn.textContent = originalText;
+                            btn.style.background = '';
+                            btn.style.color = '';
+                        }, 2000);
+                    }
+                    alert('Channel name copied to clipboard!');
+                }).catch(() => {
+                    alert('Failed to copy. Channel name: ' + channelName);
+                });
+            }
+        }
+        window.copyChannelName = copyChannelName;
+        
+        function endCall() {
+            state.isInCall = false;
+            state.currentView = 'appointment-detail';
+            render();
+        }
+        window.endCall = endCall;
+        
+        function toggleMute() {
+            console.log('Toggle mute');
+        }
+        window.toggleMute = toggleMute;
+        
+        function toggleVideo() {
+            console.log('Toggle video');
+        }
+        window.toggleVideo = toggleVideo;
+        
+        function saveNotes() {
+            console.log('Save notes');
+        }
+        window.saveNotes = saveNotes;
+        
+        function saveProfile() {
+            const name = document.getElementById('userName').value;
+            const email = document.getElementById('userEmail').value;
+            state.currentUser = { ...state.currentUser, name, email };
+            localStorage.setItem('currentUser', JSON.stringify(state.currentUser));
+            alert('Profile saved!');
+        }
+        window.saveProfile = saveProfile;
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+        }
+        window.toggleDarkMode = toggleDarkMode;
+        
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('closed');
+        }
+        window.toggleSidebar = toggleSidebar;
+        
+        function filterAppointments(filter) {
+            console.log('Filter:', filter);
+        }
+        window.filterAppointments = filterAppointments;
+        
+        function showUserMenu() {
+            console.log('Show user menu');
+        }
+        window.showUserMenu = showUserMenu;
+        
+        function logout() {
+            state.currentUser = null;
+            localStorage.removeItem('currentUser');
+            state.currentView = 'login';
+            render();
+        }
+        window.logout = logout;
+        
+        // Initialize app
+        init();
+  </script>
+</body>
+</html>

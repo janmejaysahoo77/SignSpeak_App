@@ -6,7 +6,7 @@
     android:id="@+id/settings_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B0F3B"
+    android:background="@color/colorPrimary"
     tools:context=".SettingActivity">
 
     <!-- TITLE -->
@@ -76,9 +76,59 @@
         android:text="Confirm"
         android:textAllCaps="false"
         android:textSize="16sp"
-        android:backgroundTint="#E20C0C"
+        android:backgroundTint="@color/colorAccent"
         android:textColor="#FFFFFF"
         app:layout_constraintTop_toBottomOf="@id/rGroupLanguage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- EMERGENCY CONTACT SECTION -->
+    <TextView
+        android:id="@+id/tvEmergencyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Emergency Contact"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/btnConfirmLanguage"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmergency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvEmergencyLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmergencyNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter emergency phone number"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#AAAAAA"
+            android:inputType="phone"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSaveEmergency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Save Emergency Contact"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/tilEmergency"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

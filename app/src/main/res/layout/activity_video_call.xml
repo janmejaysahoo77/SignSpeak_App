@@ -87,7 +87,7 @@
             android:layout_height="60dp"
             android:padding="10dp"
             android:src="@drawable/outline_add_call_24"
-            android:backgroundTint="#E53935"
+            android:backgroundTint="@color/colorError"
             app:tint="#fff"
             android:layout_marginRight="20dp"/>
 

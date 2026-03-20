@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- Semi-transparent dark blue/navy gradient for the background root -->
+    <gradient
+        android:startColor="#05080F"
+        android:endColor="#0B0F19"
+        android:angle="270"
+        android:type="linear"/>
+</shape>

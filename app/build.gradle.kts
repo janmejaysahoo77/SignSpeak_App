@@ -16,20 +16,30 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Agora App ID — move to local.properties for production
+        buildConfigField("String", "AGORA_APP_ID", "\"3d5c76e3883047d99b7d961c3192eb74\"")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        debug {
+            ndk {
+                abiFilters.add("arm64-v8a")
+            }
+        }
     }
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -39,6 +49,12 @@ android {
 
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
     }
 }
 
@@ -66,13 +82,13 @@ dependencies {
     implementation("androidx.camera:camera-view:$camerax_version")
 
     // MediaPipe
-    implementation("com.google.mediapipe:tasks-vision:0.20230731")
+    implementation("com.google.mediapipe:tasks-vision:0.10.14")
 
     // Glide (GIF Loader)
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Agora Video SDK
-    implementation("io.agora.rtc:full-sdk:4.3.0")
+    implementation("io.agora.rtc:full-sdk:4.5.1")
 
     // Tests
     testImplementation(libs.junit)

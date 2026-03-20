@@ -24,8 +24,8 @@ class VideoCallActivity : AppCompatActivity() {
 
     private val TAG = "AGORA_OFFICIAL"
 
-    // ✅ YOUR APP ID
-    private val appId = "3d5c76e3883047d99b7d961c3192eb74"
+    // ✅ APP ID from BuildConfig (defined in build.gradle.kts)
+    private val appId = BuildConfig.AGORA_APP_ID
 
     // ✅ Testing Mode: Token is null
     private val token: String? = null

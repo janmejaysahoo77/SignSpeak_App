@@ -4,14 +4,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.hardware.camera2.CameraManager
+import android.media.Ringtone
 import android.media.RingtoneManager
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 
 class AlarmReceiver : BroadcastReceiver() {
-
-    private var isBlinking = false
 
     override fun onReceive(context: Context, intent: Intent?) {
 
@@ -24,28 +23,35 @@ class AlarmReceiver : BroadcastReceiver() {
         ringtone.play()
 
         // Start flashlight blink
-        startFlashBlink(context)
+        startFlashBlink(context, ringtone)
     }
 
-    private fun startFlashBlink(context: Context) {
-        if (isBlinking) return
-        isBlinking = true
-
+    private fun startFlashBlink(context: Context, ringtone: Ringtone) {
         val cameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]   // usually back flashlight
 
         val handler = Handler(Looper.getMainLooper())
+        val startTime = System.currentTimeMillis()
+        val alarmDurationMs = 30_000L // Auto-stop after 30 seconds
 
         val blinkRunnable = object : Runnable {
             var flashOn = false
 
             override fun run() {
+                // Auto-stop after duration
+                if (System.currentTimeMillis() - startTime >= alarmDurationMs) {
+                    try {
+                        cameraManager.setTorchMode(cameraId, false)
+                    } catch (_: Exception) { }
+                    ringtone.stop()
+                    return
+                }
+
                 flashOn = !flashOn
                 try {
                     cameraManager.setTorchMode(cameraId, flashOn)
                 } catch (_: Exception) { }
 
-                // Continue blinking until stopped manually
                 handler.postDelayed(this, 500)   // flash every 0.5 sec
             }
         }

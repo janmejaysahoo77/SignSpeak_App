@@ -24,7 +24,6 @@ import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val emergencyNumber = "9692150855"
     private var mediaPlayer: MediaPlayer? = null
     private var alarmJob: Job? = null
 
@@ -49,7 +48,8 @@ class MainActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            // Bottom set to 0 to let BottomNavigationView handle the navigation bar inset natively
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadUserName() {
         val user = auth.currentUser
         val name = user?.displayName ?: "User"
-        tvProfileName.text = "Hi, $name"
+        tvProfileName.text = "Hi, $name 👋"
     }
 
     private fun startSOSAlert() {
@@ -123,6 +123,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun callEmergencyNumber() {
+        val prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val emergencyNumber = prefs.getString("emergency_number", "112") ?: "112"
         val intent = Intent(Intent.ACTION_DIAL).apply {
             data = Uri.parse("tel:$emergencyNumber")
         }

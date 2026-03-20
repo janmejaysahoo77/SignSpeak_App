@@ -27,6 +27,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:extractNativeLibs="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -34,6 +35,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SignSpeak"
         tools:targetApi="31">
+        <!-- Splash Screen -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SignSpeak"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SettingActivity"
             android:exported="false" />
@@ -51,16 +63,12 @@
             android:exported="false" />
         <activity
             android:name=".SignLanguageTestActivity"
-            android:exported="false" /> <!-- 🔥 Signup is now the first / launcher activity -->
+            android:exported="false" />
+        <!-- Signup Activity -->
         <activity
             android:name=".SignupActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- Login Activity -->
+            android:exported="false" />
+        <!-- Login Activity -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" /> <!-- Other Activities -->
@@ -72,7 +80,8 @@
             android:exported="false" />
         <activity
             android:name=".AlarmActivity"
-            android:exported="false" /> <!-- MainActivity no longer launcher -->
+            android:exported="false" />
+        <!-- MainActivity (main content after login) -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />

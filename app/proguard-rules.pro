@@ -17,5 +17,9 @@
 #-keepattributes SourceFile,LineNumberTable
 
 # If you keep the line number information, uncomment this to
-# hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-ignorewarnings
+-keep class com.google.mediapipe.** { *; }
+-keep class io.agora.** { *; }
+-keepnames class com.example.signspeak.** { *; }

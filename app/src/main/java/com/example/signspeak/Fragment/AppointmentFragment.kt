@@ -22,14 +22,17 @@ class AppointmentFragment : Fragment() {
         // Inflate the layout
         val view = inflater.inflate(R.layout.fragment_appointment, container, false)
 
-        // Find the Consult Now button inside fragment XML
-        val btnConsultNow = view.findViewById<View>(R.id.btnConsultNow)
-
-        // Navigate to DoctorPageActivity on click
-        btnConsultNow.setOnClickListener {
+        val navigateToDoctor = View.OnClickListener {
             val intent = Intent(requireContext(), DoctorPageActivity::class.java)
             startActivity(intent)
         }
+
+        // Quick Help Banner taps -> doctor page
+        view.findViewById<View>(R.id.bannerQuickHelp).setOnClickListener(navigateToDoctor)
+
+        // Consult buttons on nearby doctor cards
+        view.findViewById<View>(R.id.viewProfileButton)?.setOnClickListener(navigateToDoctor)
+        view.findViewById<View>(R.id.viewProfileButton2)?.setOnClickListener(navigateToDoctor)
 
         return view
     }

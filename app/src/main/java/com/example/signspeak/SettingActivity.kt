@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 
 class SettingActivity : AppCompatActivity() {
 
@@ -37,6 +39,26 @@ class SettingActivity : AppCompatActivity() {
                 }
                 saveLanguage(language)
             }
+        }
+
+        // Emergency Contact
+        val etEmergency = findViewById<TextInputEditText>(R.id.etEmergencyNumber)
+        val btnSaveEmergency = findViewById<Button>(R.id.btnSaveEmergency)
+
+        // Load saved emergency number
+        val savedNumber = prefs.getString("emergency_number", "")
+        if (!savedNumber.isNullOrEmpty()) {
+            etEmergency.setText(savedNumber)
+        }
+
+        btnSaveEmergency.setOnClickListener {
+            val number = etEmergency.text.toString().trim()
+            if (number.isEmpty()) {
+                Toast.makeText(this, "Please enter a phone number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            prefs.edit().putString("emergency_number", number).apply()
+            Toast.makeText(this, "Emergency contact saved!", Toast.LENGTH_SHORT).show()
         }
     }
 

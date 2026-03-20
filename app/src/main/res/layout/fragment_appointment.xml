@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A1A44"
+    android:background="@drawable/bg_screen_gradient"
     android:padding="16dp">
 
     <LinearLayout
@@ -16,142 +17,209 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/consult_a_doctor"
-            android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/consult_subtitle"
-            android:textColor="#B0C3FF"
+            android:text="Find trusted specialists instantly"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="14sp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp" />
 
-        <!-- Featured Doctor Card -->
-        <LinearLayout
+        <!-- Quick Help Banner -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/bannerQuickHelp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/rounded_white"
-            android:elevation="4dp">
-
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:src="@drawable/dr_one"
-                android:scaleType="centerCrop"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/rounded_white"/>
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:background="@drawable/btn_gradient_cyan"
+                android:padding="16dp"
+                android:gravity="center_vertical">
 
-                <TextView
-                    android:text="@string/doctor_name_sample"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textColor="#0A1A44"
-                    android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:text="@string/doctor_speciality_sample"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textColor="#555"
-                    android:textSize="13sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Need help immediately?"
+                        android:textColor="@color/colorBackground"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:text="@string/doctor_status_online"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:textColor="#07C060"
-                    android:textSize="12sp"
-                    android:layout_marginTop="3dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Video Consultation"
+                        android:textColor="@color/colorBackground"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_local_hospital_24"
+                    app:tint="@color/colorBackground" />
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <Button
-                android:id="@+id/btnConsultNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/consult_now"
-                android:paddingLeft="14dp"
-                android:paddingRight="14dp"
-                android:backgroundTint="#2E5BFF"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
+
 
         <!-- Search bar -->
         <EditText
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/search_symptoms_hint"
-            android:padding="14dp"
-            android:background="@drawable/rounded_search"
-            android:textColor="@android:color/white"
-            android:textColorHint="#B0C3FF"
+            android:layout_height="56dp"
+            android:hint="Search symptoms or doctor"
+            android:padding="16dp"
+            android:background="@drawable/bg_search_premium"
+            android:textColor="@color/colorTextPrimary"
+            android:textColorHint="@color/colorTextSecondary"
             android:drawableStart="@drawable/baseline_search_24"
+            android:drawableTint="@color/colorTextSecondary"
             android:drawablePadding="12dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="24dp" />
 
-        <!-- FIXED GRID -->
-        <TableLayout
+        <!-- Category Chips ScrollView -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:shrinkColumns="*"
-            android:stretchColumns="*"
-            android:layout_marginBottom="20dp">
+            android:scrollbars="none"
+            android:layout_marginBottom="24dp">
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <TextView
+                    android:id="@+id/chipGeneral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="General"
+                    android:textColor="@color/colorBackground"
+                    android:background="@drawable/bg_chip_category"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+                    
+                <TextView
+                    android:id="@+id/chipAyurveda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ayurveda"
+                    android:textColor="@color/colorTextPrimary"
+                    android:background="@drawable/bg_chip_category"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+                    
+                <TextView
+                    android:id="@+id/chipNeurology"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Neurology"
+                    android:textColor="@color/colorTextPrimary"
+                    android:background="@drawable/bg_chip_category"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+                    
+                <TextView
+                    android:id="@+id/chipCardiology"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cardiology"
+                    android:textColor="@color/colorTextPrimary"
+                    android:background="@drawable/bg_chip_category"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+                    
+                <TextView
+                    android:id="@+id/chipDentist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dentist"
+                    android:textColor="@color/colorTextPrimary"
+                    android:background="@drawable/bg_chip_category"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
-            <TableRow>
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category"/>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category2"/>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category3"/>
-                </LinearLayout>
-            </TableRow>
-
-            <TableRow>
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category4"/>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category5"/>
-                </LinearLayout>
-
-                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content">
-                    <include layout="@layout/item_category6"/>
-                </LinearLayout>
-            </TableRow>
-        </TableLayout>
 
         <!-- Top Doctors -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/top_doctors"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="16dp" />
 
-        <include layout="@layout/item_doctor"/>
-        <include layout="@layout/item_doctor_2"/>
+        <!-- Horizontal Doctor Cards Scroller -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingEnd="16dp"
+            android:scrollbars="none"
+            android:layout_marginBottom="24dp">
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+                <include layout="@layout/item_doctor_horizontal" />
+                <include layout="@layout/item_doctor_horizontal" />
+                <include layout="@layout/item_doctor_horizontal" />
+                
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Nearby Doctors List -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nearby Doctors"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
 
         <!-- Emergency Card -->
         <LinearLayout
@@ -183,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/call_now"
-                android:backgroundTint="#E53935"
+                android:backgroundTint="@color/colorError"
                 android:textColor="@android:color/white"
                 android:layout_marginTop="12dp"/>
         </LinearLayout>

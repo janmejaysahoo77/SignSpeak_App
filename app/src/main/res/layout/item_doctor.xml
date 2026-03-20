@@ -1,73 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="12dp"
     android:layout_marginTop="12dp"
-    android:layout_marginStart="12dp"
-    android:layout_marginEnd="12dp"
-    android:background="@drawable/rounded_white"
-    android:elevation="5dp">
+    android:layout_marginBottom="4dp"
+    app:cardBackgroundColor="@color/colorCard"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="4dp"
+    app:rippleColor="@color/colorSecondary"
+    android:clickable="true"
+    android:focusable="true">
 
-    <!-- Doctor Image -->
-    <ImageView
-        android:id="@+id/doctorImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/rounded_white"
-        android:src="@drawable/dr_one"
-        android:padding="3dp"
-        android:scaleType="centerCrop"
-        android:layout_marginEnd="12dp" />
-
-    <!-- Name, Experience, Rating -->
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        android:background="?attr/selectableItemBackground">
 
-        <TextView
-            android:id="@+id/doctorName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dr. Anita Rao, MBBS"
-            android:textColor="#0A1A44"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        <!-- Circular Doctor Image -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="0dp"
+            android:layout_marginEnd="16dp">
+            <ImageView
+                android:id="@+id/doctorImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/dr_one"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/doctorExperience"
-            android:layout_width="wrap_content"
+        <!-- Details -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="8+ Years Experience"
-            android:textColor="#555555"
-            android:textSize="13sp"
-            android:layout_marginTop="3dp"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/doctorRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⭐ 4.9"
-            android:textColor="#FFA500"
-            android:textSize="13sp"
-            android:layout_marginTop="2dp"/>
+            <TextView
+                android:id="@+id/doctorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dr. Anita Rao"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/doctorSpeciality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="General Physician"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical">
+                
+                <TextView
+                    android:id="@+id/doctorRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐ 4.8"
+                    android:textColor="#FFA500"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/bg_glass_card"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:layout_marginEnd="8dp" />
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:background="@drawable/bg_cyan_circle"
+                    android:backgroundTint="#07C060"
+                    android:layout_marginEnd="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Online"
+                    android:textColor="#07C060"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Consult Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/viewProfileButton"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:text="Consult"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBackground"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/btn_gradient_cyan" />
+
     </LinearLayout>
-
-    <!-- View Profile Button -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/viewProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:text="View Profile"
-        android:textAllCaps="false"
-        android:textSize="13sp"
-        android:textColor="#2E5BFF"
-        android:background="@drawable/rounded_white"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp" />
-
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

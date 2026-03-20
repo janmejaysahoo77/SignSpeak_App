@@ -2,4 +2,28 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Sign Speak Modern Dark Theme Palette -->
+    <color name="colorPrimary">#22D3EE</color> <!-- Cyan -->
+    <color name="colorPrimaryDark">#05080F</color>
+    <color name="colorSecondary">#14B8A6</color> <!-- Teal -->
+    <color name="colorAccent">#38BDF8</color> <!-- Light Blue -->
+    
+    <color name="colorBackground">#020617</color> <!-- Deep Dark -->
+    <color name="colorCard">#111827</color> <!-- Dark Card -->
+    
+    <color name="colorTextPrimary">#E2E8F0</color> <!-- Light Grey -->
+    <color name="colorTextSecondary">#94A3B8</color>
+    
+    <color name="colorCardElevated">#1E293B</color> <!-- Primary Feature Card -->
+    <color name="colorCardQuickAccess">#172033</color> <!-- Utility Card -->
+    <color name="colorStroke">#243042</color> <!-- Subtle Border -->
+    
+    <color name="colorGlassBackground">#1AFFFFFF</color> <!-- 10% White for glass -->
+    <color name="colorGlassStroke">#33FFFFFF</color> <!-- 20% White for glass stroke -->
+
+    <color name="colorError">#FF4B4B</color> <!-- SOS / Error -->
+    <color name="colorSurface">#1A1F35</color> <!-- Fallback Card surface -->
+    <color name="colorSurfaceVariant">#242A45</color>
+    <color name="colorTeal">#2DE2A6</color>
 </resources>

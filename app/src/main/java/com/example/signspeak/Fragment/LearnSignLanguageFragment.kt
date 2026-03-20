@@ -24,8 +24,8 @@ class LearnSignLanguageFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_learn_sign_language, container, false)
 
-        // Button 1 — Open YouTube
-        val btnLearn = view.findViewById<Button>(R.id.btnOpenYoutube)
+        // Button 1 — Open YouTube (Mapped to Alphabets Card for now)
+        val btnLearn = view.findViewById<View>(R.id.btnAlphabets)
         btnLearn.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_VIEW,
@@ -34,8 +34,8 @@ class LearnSignLanguageFragment : Fragment() {
             startActivity(intent)
         }
 
-        // Button 2 — Go to Test Your Sign Language
-        val btnTestSign = view.findViewById<Button>(R.id.btnTestSign)
+        // Button 2 — Go to Test Your Sign Language (Mapped to Test Skills Card)
+        val btnTestSign = view.findViewById<View>(R.id.btnTestSkills)
         btnTestSign.setOnClickListener {
             val intent = Intent(requireContext(), SignLanguageTestActivity::class.java)
             startActivity(intent)

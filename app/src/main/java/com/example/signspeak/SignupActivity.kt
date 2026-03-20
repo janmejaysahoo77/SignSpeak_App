@@ -20,6 +20,13 @@ class SignupActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        // Auto-login routing
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
+
         val etName = findViewById<TextInputEditText>(R.id.etName)
         val etEmail = findViewById<TextInputEditText>(R.id.etEmail)
         val etPassword = findViewById<TextInputEditText>(R.id.etPassword)
@@ -76,8 +83,8 @@ class SignupActivity : AppCompatActivity() {
                                 // (Optional) send email verification
                                 user?.sendEmailVerification()
 
-                                // go to Login (or MainActivity depending on your flow)
-                                startActivity(Intent(this, LoginActivity::class.java))
+                                // Go directly to MainActivity (user is already logged in)
+                                startActivity(Intent(this, MainActivity::class.java))
                                 finish()
                             }
 

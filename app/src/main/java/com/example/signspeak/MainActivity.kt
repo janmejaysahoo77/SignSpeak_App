@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var mediaPlayer: MediaPlayer? = null
     private var alarmJob: Job? = null
 
-    private lateinit var tvProfileName: TextView
-    private val auth = FirebaseAuth.getInstance()
+    private lateinit var auth: FirebaseAuth
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase?.let { applyLocale(it) }) // 🔥 language applied before UI loads
@@ -54,11 +53,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 🔥 Get user from Firebase Auth
-        tvProfileName = findViewById(R.id.tvProfileName)
-        loadUserName()
+        auth = FirebaseAuth.getInstance()
 
         // Navigation setup
-        val navController = findNavController(R.id.fragment_container)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setupWithNavController(navController)
 
@@ -70,18 +69,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 🔥 Settings Button → Open SettingsActivity
-        val settingsButton = findViewById<ImageView>(R.id.btnSettings)
+        val settingsButton = findViewById<android.view.View>(R.id.btnSettings)
         settingsButton.setOnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
         }
+
+        // ✨ Start FAB Pulse
+        val fabGlow = findViewById<android.view.View>(R.id.fabGlow)
+        val pulse = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.pulse_scale)
+        fabGlow.startAnimation(pulse)
     }
 
-    // 🔥 Set welcome name
-    private fun loadUserName() {
-        val user = auth.currentUser
-        val name = user?.displayName ?: "User"
-        tvProfileName.text = "Hi, $name 👋"
-    }
+    // 🔥 Removed loadUserName here (now in fragment)
 
     private fun startSOSAlert() {
         playSOSTone()

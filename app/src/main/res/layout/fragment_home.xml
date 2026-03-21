@@ -6,319 +6,606 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@android:color/transparent"
-    tools:context=".Fragment.HomeFragment">
+    android:clipToPadding="false"
+    android:paddingBottom="160dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="80dp">
+        android:clipChildren="false">
 
-        <TextView
-            android:id="@+id/tvSubtitle"
-            android:layout_width="0dp"
+        <!-- EXPERIMENTAL BACKGROUND GLOWS -->
+        <View
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="top|start"
+            android:background="@drawable/bg_glow_ambient_indigo"
+            android:translationX="-150dp"
+            android:translationY="-100dp" />
+
+        <View
+            android:layout_width="450dp"
+            android:layout_height="450dp"
+            android:layout_gravity="top|end"
+            android:background="@drawable/bg_glow_ambient_cyan"
+            android:translationX="150dp"
+            android:translationY="250dp" />
+
+        <View
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_gravity="bottom|start"
+            android:background="@drawable/bg_glow_ambient_blue"
+            android:translationX="-150dp"
+            android:translationY="100dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ready to connect today?"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="16sp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="32dp">
 
-        <!-- Character Illustration -->
-        <ImageView
-            android:id="@+id/characterImage"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/character"
-            android:contentDescription="@string/character_image"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+        <!-- 👋 Hero Greeting Section -->
+        <LinearLayout
+            android:id="@+id/heroSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="32dp">
 
-        <!-- Gesture to Speech Card -->
-        <com.google.android.material.card.MaterialCardView
+            <!-- Text container for animation -->
+            <LinearLayout
+                android:id="@+id/heroText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WELCOME BACK"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.2"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/tvGoodMorning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Good morning,"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="-4sp" />
+
+                <TextView
+                    android:id="@+id/tvUserGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User!"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="-4sp" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="Your AI companion is tuned and ready to bridge every communication gap today."
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="15sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4sp" />
+            </LinearLayout>
+
+            <!-- 🧠 AI Status Card (Horizontal full width) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/aiStatusCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_glass_card_v2"
+                android:padding="20dp">
+
+                <View
+                    android:id="@+id/aiPulse"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_ambient_glow"
+                    app:layout_constraintTop_toTopOf="@id/ivAiIcon"
+                    app:layout_constraintBottom_toBottomOf="@id/ivAiIcon"
+                    app:layout_constraintStart_toStartOf="@id/ivAiIcon"
+                    app:layout_constraintEnd_toEndOf="@id/ivAiIcon" />
+
+                <ImageView
+                    android:id="@+id/ivAiIcon"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/icon__3_"
+                    android:background="@drawable/bg_icon_container_primary"
+                    android:padding="14dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/colorSurfaceTint" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ivAiIcon"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+                        
+                        <View
+                            android:id="@+id/liveIndicator"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/bg_nav_item_active"
+                            android:backgroundTint="@color/colorGreenLive"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI SYSTEM LIVE"
+                            android:textColor="@color/colorSurfaceTint"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Optimized • Ready"
+                        android:textColor="@color/colorOnSurface"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <!-- 👐 Feature Card: Gesture to Speech -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnGestureToSpeech"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/colorCardElevated"
-            app:rippleColor="@color/colorPrimary"
-            android:stateListAnimator="@animator/card_press_animator"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/characterImage">
+            android:background="@drawable/bg_glass_card_v2"
+            android:padding="28dp"
+            android:layout_marginBottom="24dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/iconGesture"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_accessibility_new_24"
+                android:background="@drawable/bg_icon_container_primary"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvGestureTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground">
+                android:layout_marginTop="20dp"
+                android:text="Gesture to Speech"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="28sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toBottomOf="@id/iconGesture" />
 
-                <View
-                    android:id="@+id/accentStrip"
-                    android:layout_width="6dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/bg_cyan_glow"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+            <TextView
+                android:id="@+id/tvGestureDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Instant translation of sign language into high-fidelity speech or text."
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toBottomOf="@id/tvGestureTitle" />
 
-                <ImageView
-                    android:id="@+id/iconGesture"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/baseline_accessibility_new_24"
-                    app:tint="@color/colorPrimary"
-                    app:layout_constraintStart_toEndOf="@id/accentStrip"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+            <Button
+                android:id="@+id/btnStartScanning"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="START SCANNING"
+                android:textColor="@color/colorBackground"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="12sp"
+                android:paddingHorizontal="32dp"
+                android:background="@drawable/bg_gradient_btn_primary"
+                app:backgroundTint="@null"
+                app:layout_constraintTop_toBottomOf="@id/tvGestureDesc"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_gravity="start" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tvGestureTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gesture_to_speech"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="20dp"
-                    app:layout_constraintStart_toEndOf="@id/iconGesture"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/iconGesture" />
-                    
-                <TextView
-                    android:id="@+id/tvGestureDesc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Translate hand gestures into voice"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="14sp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toEndOf="@id/iconGesture"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvGestureTitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Speech to Gesture Premium Card -->
-        <com.google.android.material.card.MaterialCardView
+        <!-- 🎙️ Feature Card: Speech to Gesture -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnSpeechToGesture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="@color/colorCardElevated"
-            app:rippleColor="@color/colorSecondary"
-            android:stateListAnimator="@animator/card_press_animator"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/btnGestureToSpeech">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:background="?attr/selectableItemBackground">
-
-                <ImageView
-                    android:id="@+id/iconSpeech"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/rounded_adaptive_audio_mic_24"
-                    app:tint="@color/colorSecondary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvSpeechTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/speech_to_gesture"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintStart_toEndOf="@id/iconSpeech"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                    
-                <TextView
-                    android:id="@+id/tvSpeechDesc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Convert spoken words to sign language"
-                    android:textColor="@color/colorTextSecondary"
-                    android:textSize="14sp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toEndOf="@id/iconSpeech"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvSpeechTitle" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/tvQuickAccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quick Access"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintTop_toBottomOf="@id/btnSpeechToGesture"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/llQuickAccess"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/tvQuickAccess">
-
-            <!-- Learn Sign Language Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnLearnSign"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorCardQuickAccess"
-                app:strokeColor="@color/colorStroke"
-                app:strokeWidth="1dp"
-                app:rippleColor="@color/colorPrimary"
-                android:stateListAnimator="@animator/card_press_animator"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/ic_school_24"
-                        app:tint="@color/colorAccent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Learn Sign"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorTextPrimary"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <!-- Test Your Skills Card -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnTestSign"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="4dp"
-                app:cardBackgroundColor="@color/colorCardQuickAccess"
-                app:strokeColor="@color/colorStroke"
-                app:strokeWidth="1dp"
-                app:rippleColor="@color/colorPrimary"
-                android:stateListAnimator="@animator/card_press_animator"
-                android:clickable="true"
-                android:focusable="true">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="?attr/selectableItemBackground">
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/baseline_search_24"
-                        app:tint="@color/colorSecondary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Test Skills"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorTextPrimary"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-            
-        <!-- 🔔 Alarm Bar -->
-        <LinearLayout
-            android:id="@+id/alarmBar"
-            android:layout_width="match_parent"
-            android:layout_height="72dp"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_glass_card"
-            android:gravity="center_vertical"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            app:layout_constraintTop_toBottomOf="@id/llQuickAccess"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:background="@drawable/bg_glass_card_v2"
+            android:padding="28dp"
+            android:layout_marginBottom="40dp">
 
             <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/baseline_access_alarms_24"
-                android:contentDescription="@string/alarm_icon"
-                app:tint="@color/colorError" />
+                android:id="@+id/iconSpeech"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/rounded_adaptive_audio_mic_24"
+                android:background="@drawable/bg_icon_container_secondary"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tint="@color/colorSecondary" />
 
             <TextView
-                android:id="@+id/tvAlarmMessage"
+                android:id="@+id/tvSpeechTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Speech to Gesture"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="28sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toBottomOf="@id/iconSpeech" />
+
+            <TextView
+                android:id="@+id/tvSpeechDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Convert live voice or text into accurate sign language avatars."
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toBottomOf="@id/tvSpeechTitle" />
+
+            <Button
+                android:id="@+id/btnOpenVisualizer"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginTop="24dp"
+                android:text="OPEN VISUALIZER"
+                android:textColor="@color/colorOnSurface"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="12sp"
+                android:paddingHorizontal="32dp"
+                android:background="@drawable/bg_outline_btn"
+                app:backgroundTint="@null"
+                app:layout_constraintTop_toBottomOf="@id/tvSpeechDesc"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 📚 Quick Phrases Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no_alerts"
-                android:textColor="@color/colorError"
-                android:textSize="16sp"
+                android:text="Quick Phrases"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-medium"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VIEW ALL LIBRARY"
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 📦 Phrase Grid (2x2) -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins"
+            android:layout_marginBottom="40dp">
+
+            <!-- Card 1 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_phrase_card"
+                android:padding="20dp"
+                android:layout_margin="6dp">
+                <ImageView
+                    android:id="@+id/ivPh1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/rounded_search"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/colorSecondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Hello / Hi"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:layout_constraintTop_toBottomOf="@id/ivPh1"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Card 2 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_phrase_card"
+                android:padding="20dp"
+                android:layout_margin="6dp">
+                <ImageView
+                    android:id="@+id/ivPh2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_accessibility_new_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/colorSecondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Thank You"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:layout_constraintTop_toBottomOf="@id/ivPh2"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Card 3 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_phrase_card"
+                android:padding="20dp"
+                android:layout_margin="6dp">
+                <ImageView
+                    android:id="@+id/ivPh3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_add_home_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/colorSecondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Help Please"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:layout_constraintTop_toBottomOf="@id/ivPh3"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Card 4 (Emergency) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:background="@drawable/bg_phrase_card"
+                android:padding="20dp"
+                android:layout_margin="6dp">
+                <ImageView
+                    android:id="@+id/ivPh4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_emergency_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tint="@color/colorError" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="I'm Sick"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    app:layout_constraintTop_toBottomOf="@id/ivPh4"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </GridLayout>
+
+        <!-- ⏰ Alarm Feature Card -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/btnAlarmCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_glass_card_v2"
+            android:padding="24dp"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/iconAlarmBadge"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/baseline_access_alarms_24"
+                android:background="@drawable/bg_icon_container_primary"
+                android:padding="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:tint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvAlarmCardTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Set Alarm"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-medium"
                 android:layout_marginStart="16dp"
-                android:textStyle="bold" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvAlarmCardDesc"
+                app:layout_constraintStart_toEndOf="@id/iconAlarmBadge"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAlarmCardDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Schedule alert and notifications"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toBottomOf="@id/tvAlarmCardTitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iconAlarmBadge"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 🏅 Journey Progress -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_glass_card_v2"
+            android:paddingVertical="40dp"
+            android:paddingHorizontal="24dp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Circular Progress Indicator -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clProgress"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="24dp">
+                
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_nav_item_active"
+                    android:alpha="0.2" />
+
+                <!-- Mock Progress Ring -->
+                <ProgressBar
+                    android:id="@+id/learningProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:progress="72"
+                    android:max="100"
+                    android:progressDrawable="@drawable/bg_nav_item_active"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="72%"
+                        android:textColor="@color/colorOnSurface"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium" />
+                        
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="GROWTH"
+                        android:textColor="@color/colorOnSurface"
+                        android:textSize="6sp"
+                        android:letterSpacing="0.1"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Journey\nContinues"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="4sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="You've mastered 14 new phrases this\nweek. &quot;Medical Context&quot; module is\nunlocked and ready for practice!"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="13sp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="4sp"
+                android:fontFamily="sans-serif-medium" />
+
+            <Button
+                android:id="@+id/btnLearnSign"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="28dp"
+                android:text="RESUME LESSON"
+                android:textColor="@color/colorOnSurface"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.15"
+                android:paddingHorizontal="32dp"
+                android:background="@drawable/bg_outline_btn"
+                app:backgroundTint="@null" />
+
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </FrameLayout>
 </androidx.core.widget.NestedScrollView>

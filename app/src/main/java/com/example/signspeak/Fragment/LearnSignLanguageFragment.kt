@@ -24,6 +24,27 @@ class LearnSignLanguageFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_learn_sign_language, container, false)
 
+        val tabLayout = view.findViewById<com.google.android.material.tabs.TabLayout>(R.id.tabLayout)
+        val learnContainer = view.findViewById<View>(R.id.learnContainer)
+        val testContainer = view.findViewById<View>(R.id.testContainer)
+
+        tabLayout.addOnTabSelectedListener(object : com.google.android.material.tabs.TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: com.google.android.material.tabs.TabLayout.Tab?) {
+                when (tab?.position) {
+                    0 -> {
+                        learnContainer.visibility = View.VISIBLE
+                        testContainer.visibility = View.GONE
+                    }
+                    1 -> {
+                        learnContainer.visibility = View.GONE
+                        testContainer.visibility = View.VISIBLE
+                    }
+                }
+            }
+            override fun onTabUnselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+            override fun onTabReselected(tab: com.google.android.material.tabs.TabLayout.Tab?) {}
+        })
+
         // Button 1 — Open YouTube (Mapped to Alphabets Card for now)
         val btnLearn = view.findViewById<View>(R.id.btnAlphabets)
         btnLearn.setOnClickListener {

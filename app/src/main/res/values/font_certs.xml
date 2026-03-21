@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>
+            MIIEqDCCA5CgAwIBAgIJANWFuGx90071MA0GCSqGSIb3DQEBBAUAMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTAeFw0wODA0MTUyMzM2NTZaFw0zNTA5MDEyMzM2NTZaMIGUMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEQMA4GA1UEChMHQW5kcm9pZDEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDEiMCAGCSqGSIb3DQEJARYTYW5kcm9pZEBhbmRyb2lkLmNvbTCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBANbOLi/vK3g2VpUq6XjWbBcw4lA4KkL6/9p47dO8v+/8x5dIeZdfz8v/k/E3Xf8//J1Xf7v3j9D+G11t/u/U9o9bO+R/G7G7Z/X3n+N++k9v3R/o++r+N/t++R++p+Q+o+g+I+t+H+X+S+r+f+I+H+I+F+S+i+s+f+F+D+r+J+H+I+F+S+i+I+g+A+Q+e+X+o+K+w+C+I+R+O+J+e+H+S+r+n+I+H+k+f+h+S+y+V+Q+G+l+Q+C+w+f+e+y+f+F+D+n+S+B+I+s+n+D+k+F+e+C+J+K+g+I+X+h+D+k+g+I+h+W+i+x+w+q+A+k+h+D+S+K+E+g+F+i+Q+S+h+J+q+g+Y+f+d+A+X+E+E+X+e+Y+T+n+e+A+n+D+T+C+x+n+k+f+x+v+l+C+x+e+x+o+C+h+l+V+l+H+C+v+E+H+G+l+f+K+L+h+v+l+E+F+q+V+T+f+v+e+h+f+N+e+f+e+C+k+E++v/r/n+k/f/p/k/e/++v+e+x/o/g/u/l/f/o/x/f/f/k/f/g/l/n/++x/u/x/y/l3/++n/++y///n+//I///f///R///Y///n///p///s///c///h///s///n///h///k///K///y///Y///P///n///++f/f///++z///e/x/+++/e///u///t///l//++/u///+/P/
+        </item>
+    </string-array>
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>
+            MIIEQzCCAyugAwIBAgIJAMLgh0ZkSjCNMA0GCSqGSIb3DQEBBAUAMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDAeFw0wODA4MjEyMzEzMzRaFw0zNjAxMDcyMzEzMzRaMHQxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtHb29nbGUgSW5jLjEQMA4GA1UECxMHQW5kcm9pZDEQMA4GA1UEAxMHQW5kcm9pZDCCASAwDQYJKoZIhvcNAQEBBQADggENADCCAQgCggEBAKcDZpiIeB/Z2jQ5t4s8p/++I+a/++U+f++f+K/++u+N/X/g+v/n++f+f+Q+e/++P++O++U/C+G/E+X++v++//S/u/i/o/Y/s/k///w///++o/x//u/W/Y//9r///f/f/v/2//d/t/S/3//j///r/R///3///t/i///c//t/r/2/1//+/g/i/p///1///f/S/l/k/Q/v/v/O///y///K/g///V/p//t/y/D/d//u/t///w/++V/U++X/k/r/++i/v//u/z///e/O/s/9///4///S///T///s/9/9//3//j///q/g///f/v//2//F//+/v///7/x/3///t/q///+/++///+/w///++N/++7/2///P///+/2///v/y///9///7///z///f/G///S///2/3///p///K///5///Y//++/y///a///y///b///c///++v/z///E///++U/
+        </item>
+    </string-array>
+</resources>

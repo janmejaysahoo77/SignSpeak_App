@@ -6,113 +6,156 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_screen_gradient"
+    android:background="@drawable/bg_home_gradient"
     tools:context=".MainActivity">
 
-    <!-- APP TITLE TOP CENTER -->
-    <LinearLayout
-        android:id="@+id/titleContainer"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+    <!-- 🔮 Ambient Glow Overlays -->
+    <View
+        android:id="@+id/glowTop"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="@drawable/bg_ambient_glow"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_marginTop="-150dp"
+        android:layout_marginStart="-150dp" />
 
-        <TextView
-            android:id="@+id/tvSign"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SIGN"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextPrimary"
-            android:layout_marginEnd="6dp"/>
-
-        <TextView
-            android:id="@+id/tvSpeak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SPEAK"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorAccent"/>
-    </LinearLayout>
-
-    <!-- SETTINGS ICON TOP-RIGHT -->
-    <ImageView
-        android:id="@+id/btnSettings"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="20dp"
-        android:contentDescription="Settings"
-        android:src="@drawable/baseline_app_settings_alt_24"
-        app:tint="@color/colorTextSecondary"
-        app:layout_constraintTop_toTopOf="@id/titleContainer"
-        app:layout_constraintBottom_toBottomOf="@id/titleContainer"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <!-- PROFILE GREETING WITH TRUNCATION -->
-    <TextView
-        android:id="@+id/tvProfileName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Hi, User 👋"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintStart_toStartOf="parent"
+    <View
+        android:id="@+id/glowBottom"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="@drawable/bg_ambient_glow"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleContainer" />
+        android:layout_marginBottom="-150dp"
+        android:layout_marginEnd="-150dp" />
 
-    <!-- MAIN NAVIGATION FRAGMENT -->
-    <fragment
-        android:id="@+id/fragment_container"
+    <!-- 🏢 Custom Top App Bar (Sticky) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:background="@color/colorBottomNavBg"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Logo Section -->
+        <LinearLayout
+            android:id="@+id/logoContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+
+            <TextView
+                android:id="@+id/tvLogoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SignSpeak"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="-0.03" />
+        </LinearLayout>
+
+        <!-- Profile & Settings -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnSettings"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@drawable/baseline_app_settings_alt_24"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/colorOnSurfaceVariant"
+                android:layout_marginEnd="8dp" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 🧭 Main Navigation Host -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation"
-        app:layout_constraintTop_toBottomOf="@id/tvProfileName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation" />
 
-    <!-- SOS FAB -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnSOS"
+    <!-- 🚨 SOS FAB (Emergency) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fabContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_accessibility_new_24"
-        android:backgroundTint="@color/colorPrimary"
-        app:tint="@android:color/white"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:elevation="0dp"
-        app:fabCustomSize="56dp"
-        app:borderWidth="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!-- BOTTOM NAVIGATION -->
+        <!-- Outer Ring Pulse (Visualized in Kotlin) -->
+        <View
+            android:id="@+id/fabGlow"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_ambient_glow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnSOS"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/baseline_emergency_24"
+            android:background="@drawable/bg_gradient_btn_primary"
+            app:tint="@color/colorBackground"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Notification Dot -->
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_nav_item_active"
+            android:backgroundTint="@color/colorRedBadge"
+            app:layout_constraintTop_toTopOf="@id/btnSOS"
+            app:layout_constraintEnd_toEndOf="@id/btnSOS"
+            android:layout_marginTop="-4dp"
+            android:layout_marginEnd="-4dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ⚓ Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="64dp"
-        android:background="@color/colorBackground"
+        android:background="@drawable/bg_bottom_nav"
         app:itemIconTint="@color/bottom_nav_icon_color"
         app:itemTextColor="@color/bottom_nav_icon_color"
         app:labelVisibilityMode="unlabeled"
+        app:itemTextAppearanceActive="@style/BottomNavText_Active"
+        app:itemTextAppearanceInactive="@style/BottomNavText_Inactive"
         app:menu="@menu/menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

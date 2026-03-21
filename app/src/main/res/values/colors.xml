@@ -3,27 +3,62 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Sign Speak Modern Dark Theme Palette -->
-    <color name="colorPrimary">#22D3EE</color> <!-- Cyan -->
-    <color name="colorPrimaryDark">#05080F</color>
-    <color name="colorSecondary">#14B8A6</color> <!-- Teal -->
-    <color name="colorAccent">#38BDF8</color> <!-- Light Blue -->
-    
-    <color name="colorBackground">#020617</color> <!-- Deep Dark -->
-    <color name="colorCard">#111827</color> <!-- Dark Card -->
-    
-    <color name="colorTextPrimary">#E2E8F0</color> <!-- Light Grey -->
-    <color name="colorTextSecondary">#94A3B8</color>
-    
-    <color name="colorCardElevated">#1E293B</color> <!-- Primary Feature Card -->
-    <color name="colorCardQuickAccess">#172033</color> <!-- Utility Card -->
-    <color name="colorStroke">#243042</color> <!-- Subtle Border -->
-    
-    <color name="colorGlassBackground">#1AFFFFFF</color> <!-- 10% White for glass -->
-    <color name="colorGlassStroke">#33FFFFFF</color> <!-- 20% White for glass stroke -->
+    <color name="colorBackground">#0B1120</color>
+    <color name="colorBackgroundAlt">#0F172A</color>
+    <color name="colorSurfaceTint">#818CF8</color>
 
-    <color name="colorError">#FF4B4B</color> <!-- SOS / Error -->
-    <color name="colorSurface">#1A1F35</color> <!-- Fallback Card surface -->
-    <color name="colorSurfaceVariant">#242A45</color>
+    <color name="colorPrimary">#6366F1</color>
+    <color name="colorPrimaryDark">#4F46E5</color>
+    <color name="colorPrimaryContainer">#3730A3</color>
+    <color name="colorOnPrimary">#0B1120</color>
+
+    <color name="colorSecondary">#3B82F6</color>
+    <color name="colorAccent">#2563EB</color>
+
+    <color name="colorSurface">#192338</color>
+    <color name="colorSurfaceVariant">#1E293B</color>
+    <color name="colorOnSurface">#F8FAFC</color>
+    <color name="colorOnSurfaceVariant">#818CF8</color>
+
+    <!-- Legacy Compatibility -->
+    <color name="colorCard">#162032</color>
+    <color name="colorTealLegacy">#2DE2A6</color>
+
+    <color name="colorOutline">#475569</color>
+    <color name="colorOutlineVariant">#334155</color>
+
+    <color name="colorTextPrimary">#F8FAFC</color>
+    <color name="colorTextSecondary">#94A3B8</color>
+
+    <color name="colorCardElevated">#662D2A4A</color>
+    <color name="colorCardQuickAccess">#662D2A4A</color>
+    <color name="colorStroke">#1AB794F4</color>
+
+    <color name="colorGlassBackground">#662D2A4A</color>
+    <color name="colorGlassStroke">#1AB794F4</color>
+    <color name="colorGlassBorderHighlight">#0DFFFFFF</color>
+
+    <color name="colorError">#FF4B4B</color>
     <color name="colorTeal">#2DE2A6</color>
+    <color name="colorGreenLive">#4ADE80</color>
+    <color name="colorRedBadge">#EF4444</color>
+
+    <color name="colorGradientStart">#D6BCFA</color>
+    <color name="colorGradientMid">#9F7AEA</color>
+    <color name="colorGradientEnd">#667EEA</color>
+
+    <color name="colorAmbientGlow">#266366F1</color>
+    <color name="colorShadowPrimary">#4D6366F1</color>
+
+    <color name="colorBottomNavBg">#CC0B1120</color>
+    <color name="colorBottomNavInactive">#66475569</color>
+    <color name="colorBottomNavActive">#6366F1</color>
+
+    <color name="colorWhite5">#0DFFFFFF</color>
+    <color name="colorWhite10">#1AFFFFFF</color>
+    <color name="colorWhite40">#66FFFFFF</color>
+    <color name="colorPrimary10">#1AB794F4</color>
+    <color name="colorPrimary20">#33B794F4</color>
+    <color name="colorPrimary30">#4DB794F4</color>
+    <color name="colorPrimary40">#66B794F4</color>
 </resources>

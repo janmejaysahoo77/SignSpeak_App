@@ -1,0 +1,403 @@
+﻿diff --git a/.gradle/8.11.1/executionHistory/executionHistory.bin b/.gradle/8.11.1/executionHistory/executionHistory.bin
+index 649887c..b20bf59 100644
+Binary files a/.gradle/8.11.1/executionHistory/executionHistory.bin and b/.gradle/8.11.1/executionHistory/executionHistory.bin differ
+diff --git a/.gradle/8.11.1/executionHistory/executionHistory.lock b/.gradle/8.11.1/executionHistory/executionHistory.lock
+index a62b512..46298ef 100644
+Binary files a/.gradle/8.11.1/executionHistory/executionHistory.lock and b/.gradle/8.11.1/executionHistory/executionHistory.lock differ
+diff --git a/.gradle/8.11.1/fileHashes/fileHashes.bin b/.gradle/8.11.1/fileHashes/fileHashes.bin
+index 7c0064f..0f6d405 100644
+Binary files a/.gradle/8.11.1/fileHashes/fileHashes.bin and b/.gradle/8.11.1/fileHashes/fileHashes.bin differ
+diff --git a/.gradle/8.11.1/fileHashes/fileHashes.lock b/.gradle/8.11.1/fileHashes/fileHashes.lock
+index d070cb6..f113a63 100644
+Binary files a/.gradle/8.11.1/fileHashes/fileHashes.lock and b/.gradle/8.11.1/fileHashes/fileHashes.lock differ
+diff --git a/.gradle/8.11.1/fileHashes/resourceHashesCache.bin b/.gradle/8.11.1/fileHashes/resourceHashesCache.bin
+index 73449eb..66fd58c 100644
+Binary files a/.gradle/8.11.1/fileHashes/resourceHashesCache.bin and b/.gradle/8.11.1/fileHashes/resourceHashesCache.bin differ
+diff --git a/.gradle/buildOutputCleanup/buildOutputCleanup.lock b/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+index 0f988e1..7114e8f 100644
+Binary files a/.gradle/buildOutputCleanup/buildOutputCleanup.lock and b/.gradle/buildOutputCleanup/buildOutputCleanup.lock differ
+diff --git a/.gradle/file-system.probe b/.gradle/file-system.probe
+index 46e7c46..1932945 100644
+Binary files a/.gradle/file-system.probe and b/.gradle/file-system.probe differ
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index c8af235..6cb2cf2 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -86,6 +86,10 @@
+             android:name=".MainActivity"
+             android:exported="false" />
+ 
++        <activity
++            android:name=".MedicalActivity"
++            android:exported="false" />
++
+         <receiver
+             android:name=".AlarmReceiver"
+             android:exported="true" />
+diff --git a/app/src/main/java/com/example/signspeak/Fragment/AppointmentFragment.kt b/app/src/main/java/com/example/signspeak/Fragment/AppointmentFragment.kt
+index 9005f0f..1ae5ca7 100644
+--- a/app/src/main/java/com/example/signspeak/Fragment/AppointmentFragment.kt
++++ b/app/src/main/java/com/example/signspeak/Fragment/AppointmentFragment.kt
+@@ -28,11 +28,11 @@ class AppointmentFragment : Fragment() {
+         }
+ 
+         // Quick Help Banner taps -> doctor page
+-        view.findViewById<View>(R.id.bannerQuickHelp).setOnClickListener(navigateToDoctor)
++        // view.findViewById<View>(R.id.bannerQuickHelp)?.setOnClickListener(navigateToDoctor)
+ 
+         // Consult buttons on nearby doctor cards
+-        view.findViewById<View>(R.id.viewProfileButton)?.setOnClickListener(navigateToDoctor)
+-        view.findViewById<View>(R.id.viewProfileButton2)?.setOnClickListener(navigateToDoctor)
++        // view.findViewById<View>(R.id.viewProfileButton)?.setOnClickListener(navigateToDoctor)
++        // view.findViewById<View>(R.id.viewProfileButton2)?.setOnClickListener(navigateToDoctor)
+ 
+         return view
+     }
+diff --git a/app/src/main/java/com/example/signspeak/MainActivity.kt b/app/src/main/java/com/example/signspeak/MainActivity.kt
+index 0a6a2a5..d6cf9dd 100644
+--- a/app/src/main/java/com/example/signspeak/MainActivity.kt
++++ b/app/src/main/java/com/example/signspeak/MainActivity.kt
+@@ -61,6 +61,27 @@ class MainActivity : AppCompatActivity() {
+         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+         bottomNav.setupWithNavController(navController)
+ 
++        // Navigation Drawer setup
++        val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
++        val navViewDrawer = findViewById<com.google.android.material.navigation.NavigationView>(R.id.nav_view_drawer)
++        
++        navViewDrawer.setNavigationItemSelectedListener { menuItem ->
++            if (menuItem.itemId == R.id.nav_medical) {
++                // Fade animation opening MedicalActivity
++                val intent = Intent(this, MedicalActivity::class.java)
++                startActivity(intent)
++                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
++            }
++            drawerLayout.closeDrawers()
++            true
++        }
++
++        // Open drawer when the menu button is clicked
++        val btnNavDrawer = findViewById<android.widget.ImageButton>(R.id.btnNavDrawer)
++        btnNavDrawer.setOnClickListener {
++            drawerLayout.openDrawer(androidx.core.view.GravityCompat.START)
++        }
++
+         // SOS button logic
+         val sosButton = findViewById<ImageView>(R.id.btnSOS)
+         sosButton.setOnClickListener {
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+index 3a0e404..bfadcf0 100644
+--- a/app/src/main/res/layout/activity_main.xml
++++ b/app/src/main/res/layout/activity_main.xml
+@@ -1,14 +1,19 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout
++<androidx.drawerlayout.widget.DrawerLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+-    android:id="@+id/main"
++    android:id="@+id/drawer_layout"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:background="@drawable/bg_home_gradient"
+     tools:context=".MainActivity">
+ 
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:id="@+id/main"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:background="@drawable/bg_home_gradient">
++
+     <!-- ≡ƒö« Ambient Glow Overlays -->
+     <View
+         android:id="@+id/glowTop"
+@@ -53,6 +58,16 @@
+ 
+ 
+ 
++            <ImageButton
++                android:id="@+id/btnNavDrawer"
++                android:layout_width="48dp"
++                android:layout_height="48dp"
++                android:src="@drawable/baseline_menu_24"
++                android:background="?attr/selectableItemBackgroundBorderless"
++                app:tint="@color/colorOnSurface"
++                android:layout_marginEnd="12dp"
++                android:contentDescription="Menu" />
++
+             <TextView
+                 android:id="@+id/tvLogoTitle"
+                 android:layout_width="wrap_content"
+@@ -159,3 +174,13 @@
+         app:layout_constraintBottom_toBottomOf="parent" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
++
++    <!-- Navigation Drawer -->
++    <com.google.android.material.navigation.NavigationView
++        android:id="@+id/nav_view_drawer"
++        android:layout_width="wrap_content"
++        android:layout_height="match_parent"
++        android:layout_gravity="start"
++        app:menu="@menu/drawer_menu" />
++
++</androidx.drawerlayout.widget.DrawerLayout>
+diff --git a/app/src/main/res/layout/item_doctor.xml b/app/src/main/res/layout/item_doctor.xml
+index b31acf7..05ff860 100644
+--- a/app/src/main/res/layout/item_doctor.xml
++++ b/app/src/main/res/layout/item_doctor.xml
+@@ -1,114 +1,149 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<com.google.android.material.card.MaterialCardView
+-    xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+-    android:layout_marginTop="12dp"
+-    android:layout_marginBottom="4dp"
+-    app:cardBackgroundColor="@color/colorCard"
+-    app:cardCornerRadius="24dp"
+-    app:cardElevation="4dp"
+-    app:rippleColor="@color/colorSecondary"
+-    android:clickable="true"
+-    android:focusable="true">
++    app:cardBackgroundColor="#ffffff"
++    app:cardCornerRadius="12dp"
++    app:cardElevation="2dp"
++    app:cardUseCompatPadding="true"
++    android:layout_marginBottom="12dp"
++    android:foreground="?attr/selectableItemBackground">
+ 
+-    <LinearLayout
++    <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:orientation="horizontal"
+-        android:padding="16dp"
+-        android:gravity="center_vertical"
+-        android:background="?attr/selectableItemBackground">
++        android:padding="20dp">
+ 
+-        <!-- Circular Doctor Image -->
+-        <androidx.cardview.widget.CardView
+-            android:layout_width="56dp"
+-            android:layout_height="56dp"
+-            app:cardCornerRadius="28dp"
+-            app:cardElevation="0dp"
+-            android:layout_marginEnd="16dp">
+-            <ImageView
+-                android:id="@+id/doctorImage"
++        <FrameLayout
++            android:id="@+id/flImage"
++            android:layout_width="96dp"
++            android:layout_height="96dp"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent">
++            
++            <androidx.cardview.widget.CardView
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+-                android:src="@drawable/dr_one"
+-                android:scaleType="centerCrop" />
+-        </androidx.cardview.widget.CardView>
++                app:cardCornerRadius="8dp"
++                app:cardElevation="0dp">
++                <ImageView
++                    android:id="@+id/ivDoctorImage"
++                    android:layout_width="match_parent"
++                    android:layout_height="match_parent"
++                    android:scaleType="centerCrop"
++                    android:src="@mipmap/ic_launcher" />
++            </androidx.cardview.widget.CardView>
++            
++            <View
++                android:id="@+id/vOnlineIndicator"
++                android:layout_width="16dp"
++                android:layout_height="16dp"
++                android:layout_gravity="top|end"
++                android:layout_marginTop="-4dp"
++                android:layout_marginEnd="-4dp"
++                android:background="@drawable/bg_community_story_ring"
++                android:backgroundTint="#22c55e" />
++        </FrameLayout>
+ 
+-        <!-- Details -->
+         <LinearLayout
++            android:id="@+id/llInfo"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+-            android:layout_weight="1"
+-            android:orientation="vertical">
++            android:orientation="vertical"
++            android:layout_marginStart="16dp"
++            app:layout_constraintStart_toEndOf="@id/flImage"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintTop_toTopOf="parent">
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:gravity="center_vertical"
++                android:layout_marginBottom="4dp">
++                <TextView
++                    android:id="@+id/tvStatusBadge"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="AVAILABLE"
++                    android:background="#e6f4ea"
++                    android:textColor="#16a34a"
++                    android:textStyle="bold"
++                    android:textSize="10sp"
++                    android:paddingHorizontal="8dp"
++                    android:paddingVertical="2dp" />
++                <View
++                    android:layout_width="0dp"
++                    android:layout_height="0dp"
++                    android:layout_weight="1" />
++                <ImageView
++                    android:layout_width="20dp"
++                    android:layout_height="20dp"
++                    android:src="@android:drawable/ic_menu_edit"
++                    app:tint="#727785" />
++            </LinearLayout>
+ 
+             <TextView
+-                android:id="@+id/doctorName"
++                android:id="@+id/tvDoctorName"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:text="Dr. Anita Rao"
+-                android:textColor="@color/colorTextPrimary"
++                android:text="Dr. Sarah Johnson"
++                android:textColor="#191c1e"
+                 android:textSize="18sp"
+                 android:textStyle="bold" />
+ 
+             <TextView
+-                android:id="@+id/doctorSpeciality"
++                android:id="@+id/tvSpecialty"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+-                android:text="General Physician"
+-                android:textColor="@color/colorTextSecondary"
++                android:text="Senior Cardiologist"
++                android:textColor="#424754"
+                 android:textSize="14sp"
+-                android:layout_marginTop="2dp" />
++                android:layout_marginBottom="8dp" />
+ 
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+-                android:layout_marginTop="6dp"
+                 android:gravity="center_vertical">
+-                
++                <ImageView
++                    android:layout_width="16dp"
++                    android:layout_height="16dp"
++                    android:src="@android:drawable/btn_star_big_on"
++                    app:tint="#eab308" />
+                 <TextView
+-                    android:id="@+id/doctorRating"
++                    android:id="@+id/tvRating"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+-                    android:text="Γ¡É 4.8"
+-                    android:textColor="#FFA500"
+-                    android:textSize="12sp"
++                    android:text="4.8"
+                     android:textStyle="bold"
+-                    android:background="@drawable/bg_glass_card"
+-                    android:paddingHorizontal="6dp"
+-                    android:paddingVertical="2dp"
+-                    android:layout_marginEnd="8dp" />
+-
+-                <View
+-                    android:layout_width="4dp"
+-                    android:layout_height="4dp"
+-                    android:background="@drawable/bg_cyan_circle"
+-                    android:backgroundTint="#07C060"
+-                    android:layout_marginEnd="4dp" />
+-
++                    android:textColor="#191c1e"
++                    android:textSize="14sp"
++                    android:layout_marginStart="4dp" />
+                 <TextView
++                    android:id="@+id/tvReviews"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+-                    android:text="Online"
+-                    android:textColor="#07C060"
+-                    android:textSize="12sp" />
++                    android:text="(120 reviews)"
++                    android:textColor="#727785"
++                    android:textSize="12sp"
++                    android:layout_marginStart="4dp" />
+             </LinearLayout>
+         </LinearLayout>
+ 
+-        <!-- Consult Button -->
+         <androidx.appcompat.widget.AppCompatButton
+-            android:id="@+id/viewProfileButton"
+-            android:layout_width="90dp"
+-            android:layout_height="40dp"
+-            android:text="Consult"
+-            android:textAllCaps="false"
+-            android:textSize="14sp"
++            android:id="@+id/btnAction"
++            android:layout_width="match_parent"
++            android:layout_height="48dp"
++            android:layout_marginTop="16dp"
++            android:text="Book Now"
++            android:textColor="#ffffff"
+             android:textStyle="bold"
+-            android:textColor="@color/colorBackground"
+-            android:backgroundTint="@color/colorPrimary"
+-            android:background="@drawable/btn_gradient_cyan" />
++            android:background="@drawable/bg_doctor_btn_available"
++            app:layout_constraintTop_toBottomOf="@id/flImage"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintEnd_toEndOf="parent" />
+ 
+-    </LinearLayout>
+-</com.google.android.material.card.MaterialCardView>
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</androidx.cardview.widget.CardView>
+diff --git a/app/src/main/res/menu/menu.xml b/app/src/main/res/menu/menu.xml
+index af3baf8..1a0345b 100644
+--- a/app/src/main/res/menu/menu.xml
++++ b/app/src/main/res/menu/menu.xml
+@@ -12,9 +12,9 @@
+         android:icon="@drawable/baseline_accessibility_new_24"
+         android:id="@+id/gestureToSpeechFragment" />
+ 
+-    <item android:title="Consult Doctor"
++    <item android:title="Community"
+         android:icon="@drawable/baseline_local_hospital_24"
+-        android:id="@+id/appointmentFragment" />
++        android:id="@+id/communityFragment" />
+ 
+     <item android:title="Learn Sign Language"
+         android:icon="@drawable/learnsign"
+diff --git a/app/src/main/res/navigation/navigation.xml b/app/src/main/res/navigation/navigation.xml
+index 3b8611b..d664c74 100644
+--- a/app/src/main/res/navigation/navigation.xml
++++ b/app/src/main/res/navigation/navigation.xml
+@@ -26,8 +26,8 @@
+         android:label="fragment_learn_sign_language"
+         tools:layout="@layout/fragment_learn_sign_language" />
+     <fragment
+-        android:id="@+id/appointmentFragment"
+-        android:name="com.example.signspeak.Fragment.AppointmentFragment"
+-        android:label="fragment_appointment"
+-        tools:layout="@layout/fragment_appointment" />
++        android:id="@+id/communityFragment"
++        android:name="com.example.signspeak.Fragment.CommunityFragment"
++        android:label="fragment_community"
++        tools:layout="@layout/fragment_community" />
+ </navigation>
+\ No newline at end of file

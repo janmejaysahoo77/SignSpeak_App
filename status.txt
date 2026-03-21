@@ -1,0 +1,147 @@
+﻿On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .gradle/8.11.1/executionHistory/executionHistory.bin
+	modified:   .gradle/8.11.1/executionHistory/executionHistory.lock
+	modified:   .gradle/8.11.1/fileHashes/fileHashes.bin
+	modified:   .gradle/8.11.1/fileHashes/fileHashes.lock
+	modified:   .gradle/8.11.1/fileHashes/resourceHashesCache.bin
+	modified:   .gradle/buildOutputCleanup/buildOutputCleanup.lock
+	modified:   .gradle/file-system.probe
+	modified:   app/src/main/AndroidManifest.xml
+	modified:   app/src/main/java/com/example/signspeak/Fragment/AppointmentFragment.kt
+	modified:   app/src/main/java/com/example/signspeak/MainActivity.kt
+	modified:   app/src/main/res/layout/activity_main.xml
+	modified:   app/src/main/res/layout/item_doctor.xml
+	modified:   app/src/main/res/menu/menu.xml
+	modified:   app/src/main/res/navigation/navigation.xml
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	app/src/main/java/com/example/signspeak/BookAppointmentFragment.kt
+	app/src/main/java/com/example/signspeak/CartAdapter.kt
+	app/src/main/java/com/example/signspeak/CartFragment.kt
+	app/src/main/java/com/example/signspeak/CheckoutShippingFragment.kt
+	app/src/main/java/com/example/signspeak/Fragment/BookingAdapters.kt
+	app/src/main/java/com/example/signspeak/Fragment/CommunityAdapters.kt
+	app/src/main/java/com/example/signspeak/Fragment/CommunityFragment.kt
+	app/src/main/java/com/example/signspeak/Fragment/DoctorAdapter.kt
+	app/src/main/java/com/example/signspeak/Fragment/DoctorsFragment.kt
+	app/src/main/java/com/example/signspeak/Fragment/ScheduleAdapters.kt
+	app/src/main/java/com/example/signspeak/Fragment/ScriptAdapters.kt
+	app/src/main/java/com/example/signspeak/MedicalActivity.kt
+	app/src/main/java/com/example/signspeak/MedicalAppointmentFragment.kt
+	app/src/main/java/com/example/signspeak/MedicalHomeFragment.kt
+	app/src/main/java/com/example/signspeak/MedicalPharmacyFragment.kt
+	app/src/main/java/com/example/signspeak/MedicalPrescriptionFragment.kt
+	app/src/main/java/com/example/signspeak/OrderSuccessFragment.kt
+	app/src/main/java/com/example/signspeak/ProductAdapter.kt
+	app/src/main/java/com/example/signspeak/ReviewOrderFragment.kt
+	app/src/main/java/com/example/signspeak/ViewSummaryFragment.kt
+	app/src/main/res/color/color_medical_bottom_nav_text.xml
+	app/src/main/res/color/selector_payment_icon.xml
+	app/src/main/res/color/selector_payment_text.xml
+	app/src/main/res/drawable/baseline_menu_24.xml
+	app/src/main/res/drawable/bg_bestseller_tag.xml
+	app/src/main/res/drawable/bg_community_chip_active.xml
+	app/src/main/res/drawable/bg_community_chip_inactive.xml
+	app/src/main/res/drawable/bg_community_glass_card.xml
+	app/src/main/res/drawable/bg_community_search.xml
+	app/src/main/res/drawable/bg_community_story_add.xml
+	app/src/main/res/drawable/bg_community_story_ring.xml
+	app/src/main/res/drawable/bg_doctor_btn_available.xml
+	app/src/main/res/drawable/bg_doctor_btn_busy.xml
+	app/src/main/res/drawable/bg_doctor_search.xml
+	app/src/main/res/drawable/bg_edittext_checkout.xml
+	app/src/main/res/drawable/bg_med_avatar_container.xml
+	app/src/main/res/drawable/bg_med_badge_completed.xml
+	app/src/main/res/drawable/bg_med_badge_confirmed.xml
+	app/src/main/res/drawable/bg_med_badge_pending.xml
+	app/src/main/res/drawable/bg_med_btn_primary.xml
+	app/src/main/res/drawable/bg_med_btn_receipt.xml
+	app/src/main/res/drawable/bg_med_btn_secondary.xml
+	app/src/main/res/drawable/bg_med_circle_icon.xml
+	app/src/main/res/drawable/bg_med_consultation_card.xml
+	app/src/main/res/drawable/bg_med_consultation_card_normal.xml
+	app/src/main/res/drawable/bg_med_consultation_card_selected.xml
+	app/src/main/res/drawable/bg_med_date_normal.xml
+	app/src/main/res/drawable/bg_med_date_selected.xml
+	app/src/main/res/drawable/bg_med_history_card.xml
+	app/src/main/res/drawable/bg_med_icon_primary.xml
+	app/src/main/res/drawable/bg_med_icon_secondary.xml
+	app/src/main/res/drawable/bg_med_icon_tertiary.xml
+	app/src/main/res/drawable/bg_med_invoice_card.xml
+	app/src/main/res/drawable/bg_med_progress_bar.xml
+	app/src/main/res/drawable/bg_med_square_icon.xml
+	app/src/main/res/drawable/bg_med_surface_container.xml
+	app/src/main/res/drawable/bg_med_surface_container_low.xml
+	app/src/main/res/drawable/bg_med_surface_container_lowest.xml
+	app/src/main/res/drawable/bg_med_time_normal.xml
+	app/src/main/res/drawable/bg_med_time_selected.xml
+	app/src/main/res/drawable/bg_med_treatment_card.xml
+	app/src/main/res/drawable/bg_medical_bottom_nav.xml
+	app/src/main/res/drawable/bg_medical_bottom_nav_item.xml
+	app/src/main/res/drawable/bg_payment_method_selector.xml
+	app/src/main/res/drawable/bg_quantity_selector.xml
+	app/src/main/res/drawable/bg_specialty_chip_active.xml
+	app/src/main/res/drawable/bg_specialty_chip_inactive.xml
+	app/src/main/res/drawable/ic_account_balance_wallet.xml
+	app/src/main/res/drawable/ic_add.xml
+	app/src/main/res/drawable/ic_apple.xml
+	app/src/main/res/drawable/ic_arrow_back.xml
+	app/src/main/res/drawable/ic_check.xml
+	app/src/main/res/drawable/ic_check_circle_large.xml
+	app/src/main/res/drawable/ic_close.xml
+	app/src/main/res/drawable/ic_credit_card.xml
+	app/src/main/res/drawable/ic_delete.xml
+	app/src/main/res/drawable/ic_description.xml
+	app/src/main/res/drawable/ic_dummy_banner.xml
+	app/src/main/res/drawable/ic_dummy_product.xml
+	app/src/main/res/drawable/ic_edit.xml
+	app/src/main/res/drawable/ic_health_and_safety.xml
+	app/src/main/res/drawable/ic_info.xml
+	app/src/main/res/drawable/ic_local_shipping.xml
+	app/src/main/res/drawable/ic_location_on.xml
+	app/src/main/res/drawable/ic_lock.xml
+	app/src/main/res/drawable/ic_medication.xml
+	app/src/main/res/drawable/ic_remove.xml
+	app/src/main/res/drawable/ic_schedule.xml
+	app/src/main/res/drawable/ic_shopping_cart.xml
+	app/src/main/res/drawable/ic_star.xml
+	app/src/main/res/drawable/ic_verified_user.xml
+	app/src/main/res/layout/activity_medical.xml
+	app/src/main/res/layout/fragment_book_appointment.xml
+	app/src/main/res/layout/fragment_cart.xml
+	app/src/main/res/layout/fragment_checkout_shipping.xml
+	app/src/main/res/layout/fragment_community.xml
+	app/src/main/res/layout/fragment_doctors.xml
+	app/src/main/res/layout/fragment_medical_appointment.xml
+	app/src/main/res/layout/fragment_medical_home.xml
+	app/src/main/res/layout/fragment_medical_pharmacy.xml
+	app/src/main/res/layout/fragment_medical_prescription.xml
+	app/src/main/res/layout/fragment_order_success.xml
+	app/src/main/res/layout/fragment_review_order.xml
+	app/src/main/res/layout/fragment_view_summary.xml
+	app/src/main/res/layout/item_booking_history.xml
+	app/src/main/res/layout/item_cart.xml
+	app/src/main/res/layout/item_community_online.xml
+	app/src/main/res/layout/item_community_post.xml
+	app/src/main/res/layout/item_community_story.xml
+	app/src/main/res/layout/item_community_suggested.xml
+	app/src/main/res/layout/item_date.xml
+	app/src/main/res/layout/item_order_item.xml
+	app/src/main/res/layout/item_prescription_card.xml
+	app/src/main/res/layout/item_prescription_history.xml
+	app/src/main/res/layout/item_product.xml
+	app/src/main/res/layout/item_specialty_chip.xml
+	app/src/main/res/layout/item_time_slot.xml
+	app/src/main/res/layout/item_upcoming_appointment.xml
+	app/src/main/res/menu/bottom_nav_medical_menu.xml
+	app/src/main/res/menu/drawer_menu.xml
+	app/src/main/res/values/medical_colors.xml
+	status.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")

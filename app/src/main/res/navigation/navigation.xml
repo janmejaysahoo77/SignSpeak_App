@@ -26,8 +26,8 @@
         android:label="fragment_learn_sign_language"
         tools:layout="@layout/fragment_learn_sign_language" />
     <fragment
-        android:id="@+id/appointmentFragment"
-        android:name="com.example.signspeak.Fragment.AppointmentFragment"
-        android:label="fragment_appointment"
-        tools:layout="@layout/fragment_appointment" />
+        android:id="@+id/communityFragment"
+        android:name="com.example.signspeak.Fragment.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" />
 </navigation>

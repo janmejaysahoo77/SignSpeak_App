@@ -61,6 +61,27 @@ class MainActivity : AppCompatActivity() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setupWithNavController(navController)
 
+        // Navigation Drawer setup
+        val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
+        val navViewDrawer = findViewById<com.google.android.material.navigation.NavigationView>(R.id.nav_view_drawer)
+        
+        navViewDrawer.setNavigationItemSelectedListener { menuItem ->
+            if (menuItem.itemId == R.id.nav_medical) {
+                // Fade animation opening MedicalActivity
+                val intent = Intent(this, MedicalActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            }
+            drawerLayout.closeDrawers()
+            true
+        }
+
+        // Open drawer when the menu button is clicked
+        val btnNavDrawer = findViewById<android.widget.ImageButton>(R.id.btnNavDrawer)
+        btnNavDrawer.setOnClickListener {
+            drawerLayout.openDrawer(androidx.core.view.GravityCompat.START)
+        }
+
         // SOS button logic
         val sosButton = findViewById<ImageView>(R.id.btnSOS)
         sosButton.setOnClickListener {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Solid color for dummy banner -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E0E3E6" />
+        </shape>
+    </item>
+    <!-- Gradient overlay -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="0"
+                android:endColor="#000058BE"
+                android:startColor="#CC0058BE"
+                android:type="linear" />
+        </shape>
+    </item>
+</layer-list>

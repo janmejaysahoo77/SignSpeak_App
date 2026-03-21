@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="med_primary">#0058be</color>
+    <color name="med_secondary">#0060ac</color>
+    <color name="med_surface_container">#eceef1</color>
+    <color name="med_surface_container_highest">#e0e3e6</color>
+    <color name="med_surface_container_high">#e6e8eb</color>
+    <color name="med_surface_container_low">#f2f4f7</color>
+    <color name="med_surface_container_lowest">#ffffff</color>
+    <color name="med_background">#f7f9fc</color>
+    <color name="med_on_surface">#191c1e</color>
+    <color name="med_on_surface_variant">#424754</color>
+    <color name="med_outline">#727785</color>
+    <color name="med_outline_variant">#c2c6d6</color>
+    <color name="med_badge_confirmed_bg">#dcfce7</color>
+    <color name="med_badge_confirmed_text">#166534</color>
+    <color name="med_badge_pending_bg">#fef3c7</color>
+    <color name="med_badge_pending_text">#92400e</color>
+    <color name="med_circle_icon_bg">#e0efff</color>
+</resources>

@@ -12,9 +12,9 @@
         android:icon="@drawable/baseline_accessibility_new_24"
         android:id="@+id/gestureToSpeechFragment" />
 
-    <item android:title="Consult Doctor"
+    <item android:title="Community"
         android:icon="@drawable/baseline_local_hospital_24"
-        android:id="@+id/appointmentFragment" />
+        android:id="@+id/communityFragment" />
 
     <item android:title="Learn Sign Language"
         android:icon="@drawable/learnsign"

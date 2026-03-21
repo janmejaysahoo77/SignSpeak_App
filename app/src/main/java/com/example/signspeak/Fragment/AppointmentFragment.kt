@@ -28,11 +28,11 @@ class AppointmentFragment : Fragment() {
         }
 
         // Quick Help Banner taps -> doctor page
-        view.findViewById<View>(R.id.bannerQuickHelp).setOnClickListener(navigateToDoctor)
+        // view.findViewById<View>(R.id.bannerQuickHelp)?.setOnClickListener(navigateToDoctor)
 
         // Consult buttons on nearby doctor cards
-        view.findViewById<View>(R.id.viewProfileButton)?.setOnClickListener(navigateToDoctor)
-        view.findViewById<View>(R.id.viewProfileButton2)?.setOnClickListener(navigateToDoctor)
+        // view.findViewById<View>(R.id.viewProfileButton)?.setOnClickListener(navigateToDoctor)
+        // view.findViewById<View>(R.id.viewProfileButton2)?.setOnClickListener(navigateToDoctor)
 
         return view
     }

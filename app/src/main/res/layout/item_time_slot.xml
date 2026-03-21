@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvTimeSlot"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_margin="6dp"
+    android:background="@drawable/bg_med_time_normal"
+    android:gravity="center"
+    android:text="09:00 AM"
+    android:textColor="@color/med_on_surface_variant"
+    android:textSize="14sp"
+    android:textStyle="bold" />

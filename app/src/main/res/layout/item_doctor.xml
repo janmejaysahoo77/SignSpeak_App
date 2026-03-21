@@ -1,114 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="12dp"
-    android:layout_marginBottom="4dp"
-    app:cardBackgroundColor="@color/colorCard"
-    app:cardCornerRadius="24dp"
-    app:cardElevation="4dp"
-    app:rippleColor="@color/colorSecondary"
-    android:clickable="true"
-    android:focusable="true">
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginBottom="12dp"
+    android:foreground="?attr/selectableItemBackground">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:gravity="center_vertical"
-        android:background="?attr/selectableItemBackground">
+        android:padding="20dp">
 
-        <!-- Circular Doctor Image -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            app:cardCornerRadius="28dp"
-            app:cardElevation="0dp"
-            android:layout_marginEnd="16dp">
-            <ImageView
-                android:id="@+id/doctorImage"
+        <FrameLayout
+            android:id="@+id/flImage"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/dr_one"
-                android:scaleType="centerCrop" />
-        </androidx.cardview.widget.CardView>
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp">
+                <ImageView
+                    android:id="@+id/ivDoctorImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher" />
+            </androidx.cardview.widget.CardView>
+            
+            <View
+                android:id="@+id/vOnlineIndicator"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-4dp"
+                android:layout_marginEnd="-4dp"
+                android:background="@drawable/bg_community_story_ring"
+                android:backgroundTint="#22c55e" />
+        </FrameLayout>
 
-        <!-- Details -->
         <LinearLayout
+            android:id="@+id/llInfo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/flImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:id="@+id/tvStatusBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AVAILABLE"
+                    android:background="#e6f4ea"
+                    android:textColor="#16a34a"
+                    android:textStyle="bold"
+                    android:textSize="10sp"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    app:tint="#727785" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/doctorName"
+                android:id="@+id/tvDoctorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dr. Anita Rao"
-                android:textColor="@color/colorTextPrimary"
+                android:text="Dr. Sarah Johnson"
+                android:textColor="#191c1e"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/doctorSpeciality"
+                android:id="@+id/tvSpecialty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="General Physician"
-                android:textColor="@color/colorTextSecondary"
+                android:text="Senior Cardiologist"
+                android:textColor="#424754"
                 android:textSize="14sp"
-                android:layout_marginTop="2dp" />
+                android:layout_marginBottom="8dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="6dp"
                 android:gravity="center_vertical">
-                
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@android:drawable/btn_star_big_on"
+                    app:tint="#eab308" />
                 <TextView
-                    android:id="@+id/doctorRating"
+                    android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⭐ 4.8"
-                    android:textColor="#FFA500"
-                    android:textSize="12sp"
+                    android:text="4.8"
                     android:textStyle="bold"
-                    android:background="@drawable/bg_glass_card"
-                    android:paddingHorizontal="6dp"
-                    android:paddingVertical="2dp"
-                    android:layout_marginEnd="8dp" />
-
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:background="@drawable/bg_cyan_circle"
-                    android:backgroundTint="#07C060"
-                    android:layout_marginEnd="4dp" />
-
+                    android:textColor="#191c1e"
+                    android:textSize="14sp"
+                    android:layout_marginStart="4dp" />
                 <TextView
+                    android:id="@+id/tvReviews"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Online"
-                    android:textColor="#07C060"
-                    android:textSize="12sp" />
+                    android:text="(120 reviews)"
+                    android:textColor="#727785"
+                    android:textSize="12sp"
+                    android:layout_marginStart="4dp" />
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Consult Button -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/viewProfileButton"
-            android:layout_width="90dp"
-            android:layout_height="40dp"
-            android:text="Consult"
-            android:textAllCaps="false"
-            android:textSize="14sp"
+            android:id="@+id/btnAction"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:text="Book Now"
+            android:textColor="#ffffff"
             android:textStyle="bold"
-            android:textColor="@color/colorBackground"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@drawable/btn_gradient_cyan" />
+            android:background="@drawable/bg_doctor_btn_available"
+            app:layout_constraintTop_toBottomOf="@id/flImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

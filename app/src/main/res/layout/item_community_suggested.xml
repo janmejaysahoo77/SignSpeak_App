@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="128dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/bg_community_glass_card"
+    android:layout_marginEnd="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:cardCornerRadius="32dp"
+        android:layout_marginBottom="12dp">
+        <ImageView
+            android:id="@+id/ivSuggestedUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvSuggestedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maya R."
+        android:textSize="12sp"
+        android:textColor="#e4dffc"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/tvSuggestedSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 mutual"
+        android:textSize="10sp"
+        android:textColor="#cbc3d9"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnSuggAdd"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:backgroundTint="#cdbdff"
+        android:textColor="#370096"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:text="ADD" />
+</LinearLayout>

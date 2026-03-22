@@ -8,6 +8,9 @@
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,6 +18,9 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -81,6 +87,18 @@
         <activity
             android:name=".AlarmActivity"
             android:exported="false" />
+        <!-- Profile Setup Activity (full screen, before main) -->
+        <activity
+            android:name=".ProfileSetupActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SignSpeak" />
+        <!-- User Profile View Activity -->
+        <activity
+            android:name=".UserProfileViewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SignSpeak" />
         <!-- MainActivity (main content after login) -->
         <activity
             android:name=".MainActivity"
@@ -88,6 +106,10 @@
 
         <activity
             android:name=".MedicalActivity"
+            android:exported="false" />
+            
+        <activity
+            android:name=".DeviceActivity"
             android:exported="false" />
 
         <receiver

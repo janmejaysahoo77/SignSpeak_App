@@ -61,4 +61,15 @@
     <color name="colorPrimary20">#33B794F4</color>
     <color name="colorPrimary30">#4DB794F4</color>
     <color name="colorPrimary40">#66B794F4</color>
+
+    <!-- Device Activity - KINETIC HUD -->
+    <color name="colorDeviceBg">#050A12</color>
+    <color name="colorDeviceCyan">#00E5FF</color>
+    <color name="colorDeviceCyanDim">#4D00E5FF</color>
+    <color name="colorDeviceRedSOS">#FF1744</color>
+    <color name="colorDeviceSurface">#0D1B2A</color>
+    <color name="colorDeviceSurfaceLight">#152238</color>
+    <color name="colorDeviceTextDim">#667788</color>
+    <color name="colorDeviceGreen">#4ADE80</color>
+    <color name="colorDeviceOrange">#FFAB40</color>
 </resources>

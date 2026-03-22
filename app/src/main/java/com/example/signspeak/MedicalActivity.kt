@@ -17,6 +17,18 @@ class MedicalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medical)
 
+        // Set status bar color to match the light background (#f7f9fc) and configure dark text
+        window.statusBarColor = android.graphics.Color.parseColor("#f7f9fc")
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            window.insetsController?.setSystemBarsAppearance(
+                android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
+
         tabHome = findViewById(R.id.tabHome)
         tabAppointments = findViewById(R.id.tabAppointments)
         tabPrescription = findViewById(R.id.tabPrescription)

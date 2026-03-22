@@ -22,7 +22,12 @@ class SignupActivity : AppCompatActivity() {
 
         // Auto-login routing
         if (auth.currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            val prefs = getSharedPreferences("signspeak_prefs", android.content.Context.MODE_PRIVATE)
+            if (prefs.getBoolean("profile_setup_done", false)) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, ProfileSetupActivity::class.java))
+            }
             finish()
             return
         }
@@ -83,8 +88,8 @@ class SignupActivity : AppCompatActivity() {
                                 // (Optional) send email verification
                                 user?.sendEmailVerification()
 
-                                // Go directly to MainActivity (user is already logged in)
-                                startActivity(Intent(this, MainActivity::class.java))
+                                // Go to ProfileSetupActivity for first-time setup
+                                startActivity(Intent(this, ProfileSetupActivity::class.java))
                                 finish()
                             }
 

@@ -20,7 +20,12 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         
         if (auth.currentUser != null) {
-            startActivity(Intent(this, MainActivity::class.java))
+            val prefs = getSharedPreferences("signspeak_prefs", android.content.Context.MODE_PRIVATE)
+            if (prefs.getBoolean("profile_setup_done", false)) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, ProfileSetupActivity::class.java))
+            }
             finish()
             return
         }
@@ -53,8 +58,13 @@ class LoginActivity : AppCompatActivity() {
                         if (user != null) {
                             showToast("Login successful: Welcome ${user.displayName ?: ""}")
 
-                            // Go to MainActivity
-                            startActivity(Intent(this, MainActivity::class.java))
+                            // Check if profile setup is done
+                            val prefs = getSharedPreferences("signspeak_prefs", android.content.Context.MODE_PRIVATE)
+                            if (prefs.getBoolean("profile_setup_done", false)) {
+                                startActivity(Intent(this, MainActivity::class.java))
+                            } else {
+                                startActivity(Intent(this, ProfileSetupActivity::class.java))
+                            }
                             finish()
                         }
                     } else {

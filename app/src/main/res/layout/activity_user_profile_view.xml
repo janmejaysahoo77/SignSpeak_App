@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <!-- Ambient glow overlays -->
+    <View
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/bg_glow_ambient_indigo"
+        android:translationX="-150dp"
+        android:translationY="-100dp" />
+
+    <View
+        android:layout_width="450dp"
+        android:layout_height="450dp"
+        android:layout_gravity="top|end"
+        android:background="@drawable/bg_glow_ambient_cyan"
+        android:translationX="150dp"
+        android:translationY="300dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="32dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ===== TOP BAR ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_arrow_back"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/colorOnSurface"
+                    android:contentDescription="Back" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="My Profile"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginStart="8dp" />
+
+                <ImageButton
+                    android:id="@+id/btnEditToggle"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:src="@drawable/ic_edit"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="#00E5FF"
+                    android:contentDescription="Edit" />
+            </LinearLayout>
+
+            <!-- ===== PROFILE IMAGE SECTION ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingVertical="24dp">
+
+                <FrameLayout
+                    android:layout_width="120dp"
+                    android:layout_height="120dp">
+
+                    <View
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/bg_profile_avatar_glow" />
+
+                    <ImageView
+                        android:id="@+id/profileViewImage"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_person_placeholder"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Profile Photo" />
+
+                    <ImageView
+                        android:id="@+id/btnChangePhoto"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="2dp"
+                        android:src="@drawable/ic_camera_add"
+                        android:background="@drawable/bg_icon_container_primary"
+                        android:padding="7dp"
+                        android:contentDescription="Change Photo"
+                        android:visibility="gone"
+                        app:tint="@color/white" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/profileViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="User"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/profileViewEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text=""
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif" />
+            </LinearLayout>
+
+            <!-- ===== PERSONAL INFO CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personal Information"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Name"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvName"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="textPersonName"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="number"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== DISABILITY INFO CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disability Information"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type of Disability"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvDisability"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Severity Level"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvSeverity"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== LANGUAGE & COMMUNICATION CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language &amp; Communication"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preferred Language"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Communication Mode"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== HEALTH INFO CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Health Information"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blood Group"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvBloodGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="text"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medical Condition"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvCondition"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="text"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== EMERGENCY CONTACTS CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Contacts"
+                    android:textColor="@color/colorError"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Contact 1"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvEmergency1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="phone"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Contact 2"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvEmergency2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="phone"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Guardian / Caretaker"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <EditText
+                    android:id="@+id/pvGuardian"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_edittext"
+                    android:paddingHorizontal="16dp"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="14sp"
+                    android:inputType="textPersonName"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== SIGN LANGUAGE CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Language"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.15"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sign Language Usage"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvSignUsage"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Experience Level"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="6dp" />
+                <Spinner
+                    android:id="@+id/pvExperience"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_profile_spinner"
+                    android:paddingHorizontal="12dp"
+                    android:enabled="false" />
+            </LinearLayout>
+
+            <!-- ===== SOS TOGGLE CARD ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_profile_card"
+                android:padding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOS Emergency Alert"
+                        android:textColor="@color/colorOnSurface"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Enable quick emergency alert feature"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/pvSwitchSOS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    app:thumbTint="@color/colorPrimary"
+                    app:trackTint="@color/colorOutlineVariant" />
+            </LinearLayout>
+
+            <!-- ===== SAVE BUTTON (hidden in view mode) ===== -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="UPDATE PROFILE"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:background="@drawable/bg_profile_save_btn"
+                android:elevation="8dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="32dp"
+                android:visibility="gone"
+                app:backgroundTint="@null"
+                app:cornerRadius="999dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

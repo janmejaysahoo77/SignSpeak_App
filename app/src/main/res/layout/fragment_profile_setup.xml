@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false">
+
+            <View
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:layout_gravity="top|start"
+                android:background="@drawable/bg_glow_ambient_indigo"
+                android:translationX="-150dp"
+                android:translationY="-100dp" />
+
+            <View
+                android:layout_width="450dp"
+                android:layout_height="450dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/bg_glow_ambient_cyan"
+                android:translationX="150dp"
+                android:translationY="300dp" />
+
+            <View
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:layout_gravity="bottom|start"
+                android:background="@drawable/bg_glow_ambient_blue"
+                android:translationX="-150dp"
+                android:translationY="100dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="32dp">
+
+                <!-- ===== HEADER ===== -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PROFILE SETUP"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.2"
+                    android:textAllCaps="true"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Complete Your Profile"
+                    android:textColor="@color/colorOnSurface"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Help us personalize your SignSpeak experience"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginBottom="28dp" />
+
+                <!-- ===== PROFILE IMAGE SECTION ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="32dp"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="130dp"
+                        android:layout_height="130dp">
+
+                        <View
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:background="@drawable/bg_profile_avatar_glow" />
+
+                        <ImageView
+                            android:id="@+id/imgProfile"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_person_placeholder"
+                            android:scaleType="centerCrop"
+                            android:padding="20dp"
+                            android:contentDescription="Profile Image" />
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="4dp"
+                            android:src="@drawable/ic_camera_add"
+                            android:background="@drawable/bg_icon_container_primary"
+                            android:padding="8dp"
+                            android:contentDescription="Change Photo"
+                            app:tint="@color/white" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Tap to change photo"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: PERSONAL INFORMATION ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Personal Information"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Enter your full name"
+                        android:inputType="textPersonName"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Age"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Enter your age"
+                        android:inputType="number"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: DISABILITY INFORMATION ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disability Information"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Type of Disability"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spDisability"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Severity Level"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spSeverity"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: LANGUAGE & COMMUNICATION ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Language &amp; Communication"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Preferred Language"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Communication Mode"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spMode"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: HEALTH INFORMATION ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Health Information"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blood Group"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etBloodGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="e.g. A+, B-, O+"
+                        android:inputType="text"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medical Condition (if any)"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etCondition"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="e.g. Diabetes, Asthma"
+                        android:inputType="text"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: EMERGENCY CONTACTS ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency Contacts"
+                        android:textColor="@color/colorError"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency Contact 1"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etEmergency1"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Phone number"
+                        android:inputType="phone"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency Contact 2"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etEmergency2"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Phone number (optional)"
+                        android:inputType="phone"
+                        android:layout_marginBottom="16dp"
+                        android:maxLines="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Guardian / Caretaker Name"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <EditText
+                        android:id="@+id/etGuardian"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_edittext"
+                        android:paddingHorizontal="16dp"
+                        android:textColor="@color/colorOnSurface"
+                        android:textColorHint="@color/colorOutline"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:hint="Guardian name"
+                        android:inputType="textPersonName"
+                        android:maxLines="1" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: SIGN LANGUAGE ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sign Language"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="11sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.15"
+                        android:textAllCaps="true"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sign Language Usage"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spSignUsage"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Experience Level"
+                        android:textColor="@color/colorTextSecondary"
+                        android:textSize="12sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="6dp" />
+
+                    <Spinner
+                        android:id="@+id/spExperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_profile_spinner"
+                        android:paddingHorizontal="12dp"
+                        android:popupBackground="@color/colorSurface" />
+                </LinearLayout>
+
+                <!-- ===== SECTION: SOS TOGGLE ===== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_profile_card"
+                    android:padding="20dp"
+                    android:layout_marginBottom="28dp"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SOS Emergency Alert"
+                            android:textColor="@color/colorOnSurface"
+                            android:textSize="16sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Enable quick emergency alert feature"
+                            android:textColor="@color/colorTextSecondary"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchSOS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        app:thumbTint="@color/colorPrimary"
+                        app:trackTint="@color/colorOutlineVariant" />
+                </LinearLayout>
+
+                <!-- ===== SAVE BUTTON ===== -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:text="SAVE PROFILE"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:background="@drawable/bg_profile_save_btn"
+                    android:elevation="8dp"
+                    android:layout_marginBottom="32dp"
+                    app:backgroundTint="@null"
+                    app:cornerRadius="999dp" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ===== SUCCESS OVERLAY (HIDDEN BY DEFAULT) ===== -->
+    <FrameLayout
+        android:id="@+id/successOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_profile_success_overlay"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="100dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <FrameLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center">
+
+                <View
+                    android:id="@+id/successGlow"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_profile_avatar_glow" />
+
+                <ImageView
+                    android:id="@+id/successCheckIcon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_check_circle_large"
+                    android:contentDescription="Success"
+                    app:tint="@color/colorTeal" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvSuccessTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Profile Saved!"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Your profile has been set up successfully"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-medium" />
+        </LinearLayout>
+    </FrameLayout>
+
+</FrameLayout>

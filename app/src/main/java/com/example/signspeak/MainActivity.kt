@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +19,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase?.let { applyLocale(it) }) // 🔥 language applied before UI loads
+        super.attachBaseContext(newBase?.let { applyLocale(it) })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Request vibration permission
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.VIBRATE),
@@ -47,61 +49,107 @@ class MainActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // Bottom set to 0 to let BottomNavigationView handle the navigation bar inset natively
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
-        // 🔥 Get user from Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Navigation setup
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNav.setupWithNavController(navController)
 
-        // Navigation Drawer setup
         val drawerLayout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
-        val navViewDrawer = findViewById<com.google.android.material.navigation.NavigationView>(R.id.nav_view_drawer)
-        
-        navViewDrawer.setNavigationItemSelectedListener { menuItem ->
-            if (menuItem.itemId == R.id.nav_medical) {
-                // Fade animation opening MedicalActivity
-                val intent = Intent(this, MedicalActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-            }
+
+        val drawerProfileHeader = findViewById<LinearLayout>(R.id.drawerProfileHeader)
+        val drawerItemSmartBand = findViewById<LinearLayout>(R.id.drawerItemSmartBand)
+        val drawerItemMedical = findViewById<LinearLayout>(R.id.drawerItemMedical)
+        val drawerItemLogout = findViewById<LinearLayout>(R.id.drawerItemLogout)
+
+        loadDrawerUserData()
+
+        drawerProfileHeader.setOnClickListener {
             drawerLayout.closeDrawers()
-            true
+            startActivity(Intent(this, UserProfileViewActivity::class.java))
         }
 
-        // Open drawer when the menu button is clicked
+        drawerItemSmartBand.setOnClickListener {
+            drawerLayout.closeDrawers()
+            startActivity(Intent(this, DeviceActivity::class.java))
+        }
+
+        drawerItemMedical.setOnClickListener {
+            drawerLayout.closeDrawers()
+            val intent = Intent(this, MedicalActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
+
+        drawerItemLogout.setOnClickListener {
+            drawerLayout.closeDrawers()
+            auth.signOut()
+            getSharedPreferences("signspeak_prefs", Context.MODE_PRIVATE)
+                .edit().clear().apply()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+
         val btnNavDrawer = findViewById<android.widget.ImageButton>(R.id.btnNavDrawer)
         btnNavDrawer.setOnClickListener {
             drawerLayout.openDrawer(androidx.core.view.GravityCompat.START)
         }
 
-        // SOS button logic
         val sosButton = findViewById<ImageView>(R.id.btnSOS)
         sosButton.setOnClickListener {
             startSOSAlert()
             callEmergencyNumber()
         }
 
-        // 🔥 Settings Button → Open SettingsActivity
         val settingsButton = findViewById<android.view.View>(R.id.btnSettings)
         settingsButton.setOnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
         }
 
-        // ✨ Start FAB Pulse
         val fabGlow = findViewById<android.view.View>(R.id.fabGlow)
         val pulse = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.pulse_scale)
         fabGlow.startAnimation(pulse)
     }
 
-    // 🔥 Removed loadUserName here (now in fragment)
+    override fun onResume() {
+        super.onResume()
+        loadDrawerUserData()
+    }
+
+    private fun loadDrawerUserData() {
+        val userId = auth.currentUser?.uid ?: return
+        val drawerUserName = findViewById<TextView>(R.id.drawerUserName)
+        val drawerUserEmail = findViewById<TextView>(R.id.drawerUserEmail)
+        val drawerProfileImage = findViewById<ImageView>(R.id.drawerProfileImage)
+
+        FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    drawerUserName.text = document.getString("name") ?: "User"
+                    drawerUserEmail.text = auth.currentUser?.email ?: ""
+
+                    val imageUrl = document.getString("profileImageUrl")
+                    if (!imageUrl.isNullOrEmpty()) {
+                        Glide.with(this)
+                            .load(imageUrl)
+                            .circleCrop()
+                            .placeholder(R.drawable.ic_person_placeholder)
+                            .into(drawerProfileImage)
+                        drawerProfileImage.setPadding(0, 0, 0, 0)
+                    }
+                }
+            }
+    }
 
     private fun startSOSAlert() {
         playSOSTone()
@@ -159,7 +207,6 @@ class MainActivity : AppCompatActivity() {
         alarmJob?.cancel()
     }
 
-    // 🔥 Locale Handling Helper
     private fun applyLocale(context: Context): Context {
         val prefs = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
         val lang = prefs.getString("language", "en")!!

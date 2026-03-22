@@ -46,17 +46,22 @@ class GestureRecognizerHelper(
     val gestureRecognizerListener: GestureRecognizerListener? = null
 ) {
     private var gestureRecognizer: GestureRecognizer? = null
+    private var isInitialized = false
 
     init {
         setupGestureRecognizer()
     }
 
+    fun isReady(): Boolean = isInitialized && gestureRecognizer != null
+
     fun clearGestureRecognizer() {
         gestureRecognizer?.close()
         gestureRecognizer = null
+        isInitialized = false
     }
 
     fun setupGestureRecognizer() {
+        isInitialized = false
         val baseOptionBuilder = BaseOptions.builder()
         baseOptionBuilder.setModelAssetPath(MP_RECOGNIZER_TASK)
 
@@ -81,12 +86,21 @@ class GestureRecognizerHelper(
 
             val options = optionsBuilder.build()
             gestureRecognizer = GestureRecognizer.createFromOptions(context, options)
+            isInitialized = true
+            Log.d(TAG, "GestureRecognizer initialized successfully")
         } catch (e: Exception) {
+            isInitialized = false
+            Log.e(TAG, "GestureRecognizer initialization failed: ${e.message}", e)
             gestureRecognizerListener?.onError("Gesture recognizer failed: ${e.message}")
         }
     }
 
     fun recognizeLiveStream(imageProxy: ImageProxy) {
+        if (!isInitialized || gestureRecognizer == null) {
+            imageProxy.close()
+            return
+        }
+
         val frameTime = SystemClock.uptimeMillis()
         val bitmap = imageProxy.toBitmap()
         imageProxy.close()
@@ -103,7 +117,12 @@ class GestureRecognizerHelper(
 
     @VisibleForTesting
     fun recognizeAsync(mpImage: MPImage, frameTime: Long) {
-        gestureRecognizer?.recognizeAsync(mpImage, frameTime)
+        if (!isInitialized || gestureRecognizer == null) return
+        try {
+            gestureRecognizer?.recognizeAsync(mpImage, frameTime)
+        } catch (e: Exception) {
+            Log.e(TAG, "recognizeAsync error: ${e.message}", e)
+        }
     }
 
     private fun returnLivestreamResult(result: GestureRecognizerResult, input: MPImage) {
@@ -115,6 +134,7 @@ class GestureRecognizerHelper(
     }
 
     private fun returnLivestreamError(error: RuntimeException) {
+        Log.e(TAG, "MediaPipe livestream error: ${error.message}", error)
         gestureRecognizerListener?.onError(error.message ?: "Unknown error")
     }
 
@@ -131,6 +151,7 @@ class GestureRecognizerHelper(
     }
 
     companion object {
+        private const val TAG = "GestureRecHelper"
         private const val MP_RECOGNIZER_TASK = "gesture_recognizer.task"
         const val DELEGATE_CPU = 0
         const val DELEGATE_GPU = 1
@@ -147,7 +168,7 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
 
     private lateinit var previewView: PreviewView
     private lateinit var gestureText: TextView
-    private lateinit var btnShowEmotion: Button // Defined the button here
+    private lateinit var btnShowEmotion: Button
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var gestureRecognizerHelper: GestureRecognizerHelper
@@ -163,29 +184,18 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
 
         previewView = view.findViewById(R.id.previewView)
         gestureText = view.findViewById(R.id.gestureText)
-        btnShowEmotion = view.findViewById(R.id.btnShowEmotion) // Find button ID
+        btnShowEmotion = view.findViewById(R.id.btnShowEmotion)
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        // ------------------ NEW LOGIC FOR EMOTION BUTTON ------------------
         btnShowEmotion.setOnClickListener {
-            // 1. Show "Normal" immediately
             Toast.makeText(requireContext(), "Emotion: Normal", Toast.LENGTH_SHORT).show()
-
-            // 2. Wait 9000 milliseconds (9 seconds), then show "Happy"
             Handler(Looper.getMainLooper()).postDelayed({
-                // Check if the app is still open to prevent crash
                 if (isAdded && context != null) {
                     Toast.makeText(requireContext(), "Emotion: Happy", Toast.LENGTH_SHORT).show()
                 }
             }, 9000)
         }
-        // ------------------------------------------------------------------
-
-        gestureRecognizerHelper = GestureRecognizerHelper(
-            context = requireContext(),
-            gestureRecognizerListener = this
-        )
 
         textToSpeech = TextToSpeech(requireContext()) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -194,6 +204,25 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
             }
         }
 
+        initializeRecognizerAndStartCamera()
+    }
+
+    private fun initializeRecognizerAndStartCamera() {
+        gestureRecognizerHelper = GestureRecognizerHelper(
+            context = requireContext(),
+            gestureRecognizerListener = this
+        )
+
+        if (gestureRecognizerHelper.isReady()) {
+            Log.d("GestureToSpeech", "Recognizer ready, starting camera")
+            checkCameraPermissionAndStart()
+        } else {
+            Log.e("GestureToSpeech", "Recognizer failed to initialize, camera will NOT start")
+            gestureText.text = "Error: Gesture recognizer failed to initialize"
+        }
+    }
+
+    private fun checkCameraPermissionAndStart() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             == PackageManager.PERMISSION_GRANTED) {
             startCamera()
@@ -202,7 +231,22 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
         }
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 101 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (gestureRecognizerHelper.isReady()) {
+                startCamera()
+            }
+        }
+    }
+
     private fun startCamera() {
+        if (!gestureRecognizerHelper.isReady()) {
+            Log.w("GestureToSpeech", "Skipping camera start — recognizer not ready")
+            return
+        }
+
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
@@ -225,6 +269,7 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(viewLifecycleOwner, cameraSelector, preview, imageAnalyzer)
             } catch (e: Exception) {
+                Log.e("GestureToSpeech", "Camera init failed: ${e.message}", e)
                 Toast.makeText(requireContext(), "Camera init failed: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }, ContextCompat.getMainExecutor(requireContext()))
@@ -255,6 +300,7 @@ class GestureToSpeechFragment : Fragment(), GestureRecognizerHelper.GestureRecog
     }
 
     override fun onError(error: String, errorCode: Int) {
+        Log.e("GestureToSpeech", "Error: $error")
         activity?.runOnUiThread {
             gestureText.text = "Error: $error"
         }

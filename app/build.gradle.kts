@@ -90,6 +90,15 @@ dependencies {
     // Agora Video SDK
     implementation("io.agora.rtc:full-sdk:4.5.1")
 
+    // Firebase Firestore
+    implementation(libs.firebase.firestore.ktx)
+
+    // Kotlin Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Lifecycle (for lifecycleScope)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+
     // Tests
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

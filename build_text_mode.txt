@@ -1,0 +1,107 @@
+﻿.\gradlew : WARNING: A 
+restricted method in 
+java.lang.System has 
+been called
+At line:1 char:1
++ .\gradlew 
+compileDebugKotlin 
+--console=plain 2>&1 | 
+Out-File -Encodin ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo     
+         : 
+NotSpecified: (WARNING 
+   : A rest...has been 
+call    ed:String) [], 
+RemoteExc    eption
+    + 
+FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+WARNING: 
+java.lang.System::load 
+has been called by net.
+rubygrapefruit.platform
+.internal.NativeLibrary
+Loader in an unnamed 
+module (file:/C:/Users/
+janme/.gradle/wrapper/d
+ists/gradle-8.11.1-bin/
+bpt9gzteqjrbo1mjrsomdt3
+2c/gradle-8.11.1/lib/na
+tive-platform-0.22-mile
+stone-26.jar)
+WARNING: Use --enable-n
+ative-access=ALL-UNNAME
+D to avoid a warning 
+for callers in this 
+module
+WARNING: Restricted 
+methods will be 
+blocked in a future 
+release unless native 
+access is enabled
+
+Starting a Gradle Daemon, 1 incompatible and 2 stopped Daemons could not be reused, use --status for details
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+
+> Task :app:processDebugMainManifest
+[io.agora.rtc:full-sdk:4.5.1] C:\Users\janme\.gradle\caches\8.11.1\transforms\e772f9d19606af06883c63fd8c9059c2\transformed\full-sdk-4.5.1\AndroidManifest.xml Warning:
+	Namespace 'io.agora.rtc' is used in multiple modules and/or libraries: io.agora.rtc:full-sdk:4.5.1, io.agora.rtc:full-rtc-basic:4.5.1, io.agora.rtc:ains:4.5.1, io.agora.rtc:ains-ll:4.5.1, io.agora.rtc:audio-beauty:4.5.1, io.agora.rtc:clear-vision:4.5.1, io.agora.rtc:full-content-inspect:4.5.1, io.agora.rtc:screen-capture:4.5.1, io.agora.rtc:full-virtual-background:4.5.1, io.agora.rtc:spatial-audio:4.5.1, io.agora.rtc:aiaec:4.5.1, io.agora.rtc:aiaec-ll:4.5.1, io.agora.rtc:full-vqa:4.5.1, io.agora.rtc:full-face-detect:4.5.1, io.agora.rtc:full-face-capture:4.5.1, io.agora.rtc:full-voice-drive:4.5.1, io.agora.rtc:full-video-codec-enc:4.5.1, io.agora.rtc:full-video-codec-dec:4.5.1, io.agora.rtc:full-video-av1-codec-enc:4.5.1, io.agora.rtc:full-video-av1-codec-dec:4.5.1, io.agora.infra:aosl:1.2.13. Please ensure that all modules and libraries have a unique namespace. For more information, See https://developer.android.com/studio/build/configure-app-module#set-namespace
+C:\Users\janme\AndroidStudioProjects\SignSpeak4 - Copy\app\src\main\AndroidManifest.xml:36:9-41 Warning:
+	android:extractNativeLibs should not be specified in this source AndroidManifest.xml file. See https://d.android.com/guide/topics/manifest/application-element#extractNativeLibs for more information.
+The AGP Upgrade Assistant can remove the attribute from the AndroidManifest.xml file and update the build file accordingly. See https://d.android.com/studio/build/agp-upgrade-assistant for more information.
+
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:processDebugResources
+
+> Task :app:compileDebugKotlin
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:17:34 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:147:38 'var value: ByteArray!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:150:38 'var value: ByteArray!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:153:34 'fun writeDescriptor(p0: BluetoothGattDescriptor!): Boolean' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:160:42 'var value: ByteArray!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:161:38 'fun writeDescriptor(p0: BluetoothGattDescriptor!): Boolean' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:182:39 'var value: ByteArray!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:257:28 'var value: ByteArray!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/BLEManager.kt:259:28 'fun writeCharacteristic(p0: BluetoothGattCharacteristic!): Boolean' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/DeviceActivity.kt:64:16 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/DeviceActivity.kt:173:67 'static fun getDefaultAdapter(): BluetoothAdapter!' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/Fragment/GestureToSpeechFragment.kt:230:13 'fun requestPermissions(p0: (Array<String!>..Array<out String!>), p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/Fragment/GestureToSpeechFragment.kt:236:15 'fun onRequestPermissionsResult(p0: Int, p1: (Array<String!>..Array<out String!>), p2: IntArray): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/Fragment/SpeechToGestureFragment.kt:85:17 'fun requestPermissions(p0: (Array<String!>..Array<out String!>), p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/MainActivity.kt:86:13 'fun overridePendingTransition(p0: Int, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/MainActivity.kt:177:49 'static field VIBRATOR_SERVICE: String' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/MainActivity.kt:184:22 'fun vibrate(p0: LongArray!, p1: Int): Unit' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/MainActivity.kt:205:49 'static field VIBRATOR_SERVICE: String' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/MedicalActivity.kt:21:16 'var statusBarColor: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:16:40 'static field FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:17:40 'static field FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:19:26 'var systemUiVisibility: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:20:18 'static field SYSTEM_UI_FLAG_IMMERSIVE_STICKY: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:21:21 'static field SYSTEM_UI_FLAG_LAYOUT_STABLE: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:22:21 'static field SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:23:21 'static field SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:24:21 'static field SYSTEM_UI_FLAG_HIDE_NAVIGATION: Int' is deprecated. Deprecated in Java.
+w: file:///C:/Users/janme/AndroidStudioProjects/SignSpeak4%20-%20Copy/app/src/main/java/com/example/signspeak/SplashActivity.kt:25:21 'static field SYSTEM_UI_FLAG_FULLSCREEN: Int' is deprecated. Deprecated in Java.
+
+BUILD SUCCESSFUL in 1m 2s
+18 actionable tasks: 5 executed, 13 up-to-date

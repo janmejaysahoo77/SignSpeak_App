@@ -5,7 +5,12 @@ pluginManagement {
         gradlePluginPortal()
 
         // Agora plugin repository
-        maven(url = "https://repo.agora.io/repository/maven/")
+        maven {
+            url = uri("https://repo.agora.io/repository/maven/")
+            content {
+                includeGroup("io.agora.rtc")
+            }
+        }
     }
 }
 
@@ -16,7 +21,12 @@ dependencyResolutionManagement {
         mavenCentral()
 
         // REQUIRED for Agora SDK 4.x
-        maven(url = "https://repo.agora.io/repository/maven/")
+        maven {
+            url = uri("https://repo.agora.io/repository/maven/")
+            content {
+                includeGroup("io.agora.rtc")
+            }
+        }
     }
 }
 

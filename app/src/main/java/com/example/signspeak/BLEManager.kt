@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.bluetooth.*
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
+import android.bluetooth.le.ScanFilter
+import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.os.ParcelUuid
 import android.util.Log
 import java.util.UUID
 
@@ -24,15 +27,16 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
     private val handler = Handler(Looper.getMainLooper())
     private val SCAN_TIMEOUT = 15000L // 15 seconds timeout
 
+    // Requesting Maximum MTU allows streaming large audio arrays
     private val DEVICE_NAME = "SignSpeak_Band"
-    private val SERVICE_UUID = UUID.fromString("12345678-1234-1234-1234-1234567890ab")
-    private val CHAR_UUID = UUID.fromString("abcd1234-5678-1234-5678-1234567890ab")
+    private val SERVICE_UUID = UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b")
+    private val CHAR_UUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8")
 
     interface BLEListener {
         fun onDeviceFound(device: BluetoothDevice)
         fun onConnected()
         fun onDisconnected()
-        fun onDataReceived(data: String)
+        fun onDataReceived(data: ByteArray)
         fun onError(message: String)
         fun onScanTimeout()
     }
@@ -90,11 +94,28 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 Log.d("BLE", "Connected to GATT server")
                 bleListener.onConnected()
-                Log.d("BLE", "Discovering services...")
-                gatt.discoverServices()
+                
+                // For small text messages like GPS, wait briefly then discover services directly.
+                // Requesting large MTUs (512) can crash some ESP32 cores upon connection!
+                handler.postDelayed({
+                    Log.d("BLE", "Discovering services immediately (No MTU stretch needed for text)...")
+                    gatt.discoverServices()
+                }, 500)
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 Log.d("BLE", "Disconnected from GATT server")
                 bleListener.onDisconnected()
+            }
+        }
+
+        override fun onMtuChanged(gatt: BluetoothGatt, mtu: Int, status: Int) {
+            super.onMtuChanged(gatt, mtu, status)
+            Log.d("BLE", "MTU changed to: $mtu (Status: $status)")
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                Log.d("BLE", "Discovering services after successful MTU stretch...")
+                gatt.discoverServices()
+            } else {
+                Log.e("BLE", "MTU stretch failed! Attempting service discovery anyway...")
+                gatt.discoverServices()
             }
         }
 
@@ -120,12 +141,33 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
                         gatt.setCharacteristicNotification(characteristic, true)
                         Log.d("BLE", "Notifications enabled")
 
-                        val descriptorList = characteristic.descriptors
-                        if (descriptorList.isNotEmpty()) {
-                            val cccd = descriptorList[0]
-                            cccd.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                        // Standard CCCD UUID for BLE Notifications
+                        val cccdUuid = UUID.fromString("00002902-0000-1000-8000-00805f9b34fb")
+                        val cccd = characteristic.getDescriptor(cccdUuid)
+                        
+                        if (cccd != null) {
+                            val properties = characteristic.properties
+                            // Check if characteristic supports Indicate vs Notify
+                            if ((properties and BluetoothGattCharacteristic.PROPERTY_INDICATE) != 0) {
+                                cccd.value = BluetoothGattDescriptor.ENABLE_INDICATION_VALUE
+                                Log.d("BLE", "Enabling INDICATIONS on CCCD")
+                            } else {
+                                cccd.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                                Log.d("BLE", "Enabling NOTIFICATIONS on CCCD")
+                            }
                             gatt.writeDescriptor(cccd)
-                            Log.d("BLE", "CCCD descriptor written")
+                        } else {
+                            Log.e("BLE", "Standard CCCD (0x2902) not found!")
+                            // Fallback just in case they used a non-standard descriptor setup
+                            val descriptorList = characteristic.descriptors
+                            if (descriptorList.isNotEmpty()) {
+                                val fallback = descriptorList[0]
+                                fallback.value = BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE
+                                gatt.writeDescriptor(fallback)
+                                Log.w("BLE", "Wrote to fallback descriptor: ${fallback.uuid}")
+                            } else {
+                                Log.e("BLE", "No descriptors at all on this characteristic!")
+                            }
                         }
                     } else {
                         Log.e("BLE", "Characteristic not found: $CHAR_UUID")
@@ -142,9 +184,10 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
 
         @Deprecated("Deprecated in API 33, but used for wider compatibility")
         override fun onCharacteristicChanged(gatt: BluetoothGatt, characteristic: BluetoothGattCharacteristic) {
-            val data = characteristic.value?.let { String(it) } ?: ""
-            Log.d("BLE", "Data received: $data")
-            bleListener.onDataReceived(data)
+            val data = characteristic.value
+            if (data != null) {
+                bleListener.onDataReceived(data)
+            }
         }
 
         override fun onCharacteristicChanged(
@@ -152,9 +195,7 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
             characteristic: BluetoothGattCharacteristic,
             value: ByteArray
         ) {
-            val data = String(value)
-            Log.d("BLE", "Data received: $data")
-            bleListener.onDataReceived(data)
+            bleListener.onDataReceived(value)
         }
     }
 
@@ -172,10 +213,20 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
         }
 
         Log.d("BLE", "========== SCAN STARTED ==========")
-        Log.d("BLE", "Looking for device: $DEVICE_NAME")
+        Log.d("BLE", "Looking for device: $DEVICE_NAME or Service UUID: $SERVICE_UUID")
         Log.d("BLE", "Scan timeout: ${SCAN_TIMEOUT / 1000} seconds")
         isScanning = true
-        scanner.startScan(scanCallback)
+        
+        // Android hides text names on some phones, so we MUST scan actively for the UUID
+        val filter = ScanFilter.Builder()
+            .setServiceUuid(ParcelUuid(SERVICE_UUID))
+            .build()
+            
+        val settings = ScanSettings.Builder()
+            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .build()
+            
+        scanner.startScan(listOf(filter), settings, scanCallback)
 
         // Auto-stop after timeout
         handler.postDelayed({

@@ -1,0 +1,29 @@
+﻿> Task :app:clean
+
+> Task :app:signingReport
+Variant: debug
+Config: debug
+Store: C:\Users\janme\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 3B:BA:32:05:82:04:38:34:53:EA:11:93:D8:0C:24:AE
+SHA1: 88:82:2A:63:7B:36:D1:94:27:F0:7E:C2:8B:DD:86:38:07:1B:08:72
+SHA-256: 53:2B:7C:27:97:AE:DD:5D:31:19:96:37:10:0F:16:49:58:37:FF:4F:B2:FE:B6:D3:F1:71:72:C6:F5:DE:3B:5A
+Valid until: Wednesday, 10 March 2055
+----------
+Variant: release
+Config: null
+Store: null
+Alias: null
+----------
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\janme\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 3B:BA:32:05:82:04:38:34:53:EA:11:93:D8:0C:24:AE
+SHA1: 88:82:2A:63:7B:36:D1:94:27:F0:7E:C2:8B:DD:86:38:07:1B:08:72
+SHA-256: 53:2B:7C:27:97:AE:DD:5D:31:19:96:37:10:0F:16:49:58:37:FF:4F:B2:FE:B6:D3:F1:71:72:C6:F5:DE:3B:5A
+Valid until: Wednesday, 10 March 2055
+----------
+
+BUILD SUCCESSFUL in 5s
+2 actionable tasks: 2 executed

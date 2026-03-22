@@ -1,0 +1,104 @@
+﻿.\gradlew : WARNING: A 
+restricted method in 
+java.lang.System has 
+been called
+At line:1 char:1
++ .\gradlew 
+compileDebugKotlin 
+--console=plain > 
+build_errors.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo     
+         : 
+NotSpecified    : 
+(WARNING: A rest.    
+..has been called:S    
+tring) [], RemoteEx    
+ception
+    + 
+FullyQualifiedErr    
+orId : NativeComman    
+dError
+ 
+WARNING: 
+java.lang.System::load 
+has been called by net.
+rubygrapefruit.platform
+.internal.NativeLibrary
+Loader in an unnamed 
+module (file:/C:/Users/
+janme/.gradle/wrapper/d
+ists/gradle-8.11.1-bin/
+bpt9gzteqjrbo1mjrsomdt3
+2c/gradle-8.11.1/lib/na
+tive-platform-0.22-mile
+stone-26.jar)
+WARNING: Use --enable-n
+ative-access=ALL-UNNAME
+D to avoid a warning 
+for callers in this 
+module
+WARNING: Restricted 
+methods will be 
+blocked in a future 
+release unless native 
+access is enabled
+
+Starting a Gradle Daemon, 1 incompatible and 4 stopped Daemons could not be reused, use --status for details
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug FAILED
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:dataBindingM
+ergeDependencyArtifacts
+Debug'.
+> Could not resolve 
+all files for 
+configuration ':app:deb
+ugCompileClasspath'.
+   > Could not resolve 
+com.alphacep:vosk-andro
+id:0.3.38.
+     Required by:
+         project :app
+      > Could not 
+resolve com.alphacep:vo
+sk-android:0.3.38.
+         > Could not 
+get resource 'https://r
+epo.agora.io/repository
+/maven/com/alphacep/vos
+k-android/0.3.38/vosk-a
+ndroid-0.3.38.pom'.
+            > Could 
+not GET 'https://repo.a
+gora.io/repository/mave
+n/com/alphacep/vosk-and
+roid/0.3.38/vosk-androi
+d-0.3.38.pom'.
+               > 
+repo.agora.io
+
+* Try:
+> Run with 
+--stacktrace option to 
+get the stack trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to 
+get full insights.
+> Get more help at http
+s://help.gradle.org.
+
+BUILD FAILED in 43s
+1 actionable task: 1 executed

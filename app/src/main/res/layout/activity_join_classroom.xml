@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#131125"
+    android:orientation="vertical">
+
+    <!-- Top Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="16dp"
+        android:background="#1a1730">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_chevron_right"
+            android:rotation="180"
+            android:padding="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="#e4dffc" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Join Classroom"
+            android:textColor="#e4dffc"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginEnd="32dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Icon -->
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_live"
+                android:layout_marginTop="32dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premium Live Classroom"
+                android:textColor="#e4dffc"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter the Room ID provided by your teacher"
+                android:textColor="#cbc3d9"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:gravity="center" />
+
+            <!-- Room ID -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room ID"
+                android:textColor="#d3bcfc"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etRoomId"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_classroom_edittext"
+                android:hint="Enter Room ID"
+                android:textColorHint="#6b6183"
+                android:textColor="#e4dffc"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:importantForAutofill="no" />
+
+            <!-- User Name -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Name (Optional)"
+                android:textColor="#d3bcfc"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_classroom_edittext"
+                android:hint="Enter your name"
+                android:textColorHint="#6b6183"
+                android:textColor="#e4dffc"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:importantForAutofill="no" />
+
+            <!-- Join Button -->
+            <Button
+                android:id="@+id/btnJoinClass"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Join Class"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_join_button"
+                android:layout_marginTop="32dp" />
+
+            <!-- Loading -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:indeterminateTint="#d3bcfc"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

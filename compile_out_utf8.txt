@@ -1,0 +1,128 @@
+﻿.\gradlew : WARNING: A 
+restricted method in 
+java.lang.System has 
+been called
+At line:1 char:1
++ .\gradlew 
+compileDebugKotlin > 
+compile_output.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (WARNING: A re   
+ st...has been call    
+ed:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+WARNING: 
+java.lang.System::load 
+has been called by net.
+rubygrapefruit.platform
+.internal.NativeLibrary
+Loader in an unnamed 
+module (file:/C:/Users/
+janme/.gradle/wrapper/d
+ists/gradle-8.11.1-bin/
+bpt9gzteqjrbo1mjrsomdt3
+2c/gradle-8.11.1/lib/na
+tive-platform-0.22-mile
+stone-26.jar)
+WARNING: Use --enable-n
+ative-access=ALL-UNNAME
+D to avoid a warning 
+for callers in this 
+module
+WARNING: Restricted 
+methods will be 
+blocked in a future 
+release unless native 
+access is enabled
+
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:processDebugGoogleServices UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:dataBindingGenBaseClassesDebug UP-TO-DATE
+> Task :app:dataBindingTriggerDebug UP-TO-DATE
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///C:/Users/jan
+me/AndroidStudioProject
+s/SignSpeak4%20-%20Copy
+/app/src/main/java/com/
+example/signspeak/LiveC
+lassActivity.kt:47:13 
+Argument type 
+mismatch: actual type 
+is 'com.zegocloud.uikit
+.prebuilt.livestreaming
+.ZegoUIKitPrebuiltLiveS
+treamingConfig!', but 
+'kotlin.String!' was 
+expected.
+e: file:///C:/Users/jan
+me/AndroidStudioProject
+s/SignSpeak4%20-%20Copy
+/app/src/main/java/com/
+example/signspeak/LiveC
+lassActivity.kt:48:13 
+Argument type 
+mismatch: actual type 
+is 'kotlin.String', 
+but 'com.zegocloud.uiki
+t.prebuilt.livestreamin
+g.ZegoUIKitPrebuiltLive
+StreamingConfig!' was 
+expected.
+
+FAILURE: Build failed 
+with an exception.
+
+* What went wrong:
+Execution failed for 
+task ':app:compileDebug
+Kotlin'.
+> A failure occurred 
+while executing org.jet
+brains.kotlin.compilerR
+unner.GradleCompilerRun
+nerWithWorkers$GradleKo
+tlinCompilerWorkAction
+   > Compilation 
+error. See log for 
+more details
+
+* Try:
+> Run with 
+--stacktrace option to 
+get the stack trace.
+> Run with --info or 
+--debug option to get 
+more log output.
+> Run with --scan to 
+get full insights.
+> Get more help at http
+s://help.gradle.org.
+
+BUILD FAILED in 25s
+19 actionable tasks: 1 executed, 18 up-to-date

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#131125"
+    tools:context=".UploadPostActivity">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1e1b36"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="#e4dffc"
+            android:padding="8dp"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Post"
+            android:textColor="#e4dffc"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+            
+        <Button
+            android:id="@+id/btnPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:textColor="#d3bcfc"
+            android:background="?attr/selectableItemBackground"
+            android:layout_gravity="end"
+            android:shadowColor="@android:color/transparent"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <!-- User Info Section -->
+    <LinearLayout
+        android:id="@+id/llUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        
+        <androidx.cardview.widget.CardView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:cardCornerRadius="24dp">
+            <ImageView
+                android:id="@+id/ivUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+        
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading..."
+            android:textColor="#e4dffc"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginStart="12dp"/>
+    </LinearLayout>
+
+    <!-- Caption Input -->
+    <EditText
+        android:id="@+id/etCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="What's on your mind?"
+        android:textColor="#e4dffc"
+        android:textColorHint="#66cbc3d9"
+        android:background="@null"
+        android:padding="16dp"
+        android:gravity="top|start"
+        android:minLines="3"
+        app:layout_constraintTop_toBottomOf="@id/llUserInfo"/>
+
+    <!-- Image Preview Container -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardImagePreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/etCaption">
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <ImageView
+                android:id="@+id/ivPostImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="300dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"/>
+                
+            <ImageView
+                android:id="@+id/btnRemoveImage"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_drawer_icon_circle"
+                android:padding="6dp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Bottom Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#1e1b36">
+        
+        <LinearLayout
+            android:id="@+id/btnSelectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="?attr/selectableItemBackground"
+            android:padding="8dp">
+            
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_camera"
+                app:tint="#d3bcfc"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Photo"
+                android:textColor="#d3bcfc"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Progress Overlay -->
+    <FrameLayout
+        android:id="@+id/progressOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="#cdbdff"/>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

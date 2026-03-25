@@ -39,6 +39,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
         buildConfig = true
     }
 
@@ -109,4 +110,14 @@ dependencies {
 
     // OSMDroid for GPS Maps
     implementation(libs.osmdroid.android)
+
+    // Location and Coroutines play-services for SOS Long Press Feature
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
+    // Cloudinary for Image Uploading
+    implementation("com.cloudinary:cloudinary-android:3.0.2")
+
+    // ZEGOCLOUD Prebuilt Live Streaming (v3.4.1 — latest stable confirmed on JitPack)
+    implementation("com.github.ZEGOCLOUD:zego_uikit_prebuilt_live_streaming_android:3.4.1")
 }

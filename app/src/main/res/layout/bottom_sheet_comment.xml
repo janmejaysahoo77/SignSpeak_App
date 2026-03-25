@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_device_connection_card"
+    android:backgroundTint="#131125"
+    android:paddingTop="16dp">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:background="#4A4458"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments"
+        android:textColor="#e4dffc"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Comments List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        
+    <TextView
+        android:id="@+id/tvEmptyComments"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="No comments yet"
+        android:textColor="#cbc3d9"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#1e1b36"/>
+
+    <!-- Input Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="#131125">
+
+        <EditText
+            android:id="@+id/etComment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_device_metric_card"
+            android:backgroundTint="#0e0c20"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:hint="Add a comment..."
+            android:textColor="#e4dffc"
+            android:textColorHint="#66cbc3d9"
+            android:textSize="14sp"
+            android:layout_marginEnd="12dp"/>
+
+        <ImageButton
+            android:id="@+id/btnSendComment"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_drawer_icon_circle"
+            android:backgroundTint="#2a244d"
+            android:src="@android:drawable/ic_menu_send"
+            app:tint="#d3bcfc"/>
+    </LinearLayout>
+
+</LinearLayout>

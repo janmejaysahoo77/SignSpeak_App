@@ -3,6 +3,8 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://storage.zego.im/maven") }
 
         // Agora plugin repository
         maven {
@@ -19,6 +21,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://storage.zego.im/maven") }
 
         // REQUIRED for Agora SDK 4.x
         maven {

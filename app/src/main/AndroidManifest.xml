@@ -24,6 +24,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -40,6 +41,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SignSpeak"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <!-- Splash Screen -->
         <activity
@@ -111,6 +113,31 @@
         <activity
             android:name=".DeviceActivity"
             android:exported="false" />
+            
+        <activity
+            android:name=".UploadPostActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ViewProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SignSpeak" />
+
+
+        <activity
+            android:name=".JoinClassRoomActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SignSpeak" />
+
+        <activity
+            android:name=".LiveClassActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:theme="@style/Theme.SignSpeak" />
 
         <receiver
             android:name=".AlarmReceiver"

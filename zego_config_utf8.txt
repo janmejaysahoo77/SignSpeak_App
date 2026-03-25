@@ -1,0 +1,37 @@
+﻿Compiled from "ZegoUIKitPrebuiltLiveStreamingConfig.java"
+public class com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig {
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoLiveStreamingRole role;
+  public boolean turnOnCameraWhenJoining;
+  public boolean turnOnMicrophoneWhenJoining;
+  public boolean turnOnCameraWhenCohosted;
+  public boolean useSpeakerWhenJoining;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoPrebuiltAudioVideoViewConfig audioVideoViewConfig;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoBottomMenuBarConfig bottomMenuBarConfig;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoMemberListConfig memberListConfig;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoDialogInfo confirmDialogInfo;
+  public transient com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoLiveStreamingEndListener zegoLiveStreamingEndListener;
+  public transient com.zegocloud.uikit.prebuilt.livestreaming.internal.components.ZegoLeaveLiveStreamingListener leaveLiveStreamingListener;
+  public transient com.zegocloud.uikit.service.defines.ZegoMeRemovedFromRoomListener removedFromRoomListener;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoTranslationText translationText;
+  private boolean enableCoHosting;
+  public boolean markAsLargeRoom;
+  public boolean needConfirmWhenOthersTurnOnYourCamera;
+  public boolean needConfirmWhenOthersTurnOnYourMicrophone;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoDialogInfo othersTurnOnYourCameraConfirmDialogInfo;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoDialogInfo othersTurnOnYourMicrophoneConfirmDialogInfo;
+  public transient com.zegocloud.uikit.prebuilt.livestreaming.widget.ZegoStartLiveButton startLiveButton;
+  public transient android.view.View$OnClickListener onStartLiveButtonPressed;
+  public com.zegocloud.uikit.components.audiovideocontainer.ZegoLayout zegoLayout;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoPrebuiltVideoConfig screenSharingVideoConfig;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoPrebuiltVideoConfig videoConfig;
+  public transient com.zegocloud.uikit.components.audiovideo.ZegoAvatarViewProvider avatarViewProvider;
+  public com.zegocloud.uikit.prebuilt.livestreaming.core.ZegoLiveStreamingPKBattleConfig pkBattleConfig;
+  public com.zegocloud.uikit.plugin.adapter.plugins.beauty.ZegoBeautyPluginConfig beautyConfig;
+  public boolean showMemberButton;
+  public com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig();
+  public static com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig host();
+  public static com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig host(boolean);
+  public static com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig audience();
+  public static com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig audience(boolean);
+  public boolean isEnableCoHosting();
+}

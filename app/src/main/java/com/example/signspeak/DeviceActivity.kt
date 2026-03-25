@@ -29,6 +29,11 @@ import android.content.Intent
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.media.MediaPlayer
+import android.net.Uri
+import android.os.VibrationEffect
+import android.os.Vibrator
+import kotlinx.coroutines.*
 
 // ========================================================================
 // [VOSK - DISABLED] Audio imports — kept for future raw audio mode
@@ -59,6 +64,9 @@ class DeviceActivity : AppCompatActivity(), BLEManager.BLEListener {
     private var originalMusicVolume = 0
     private var originalSystemVolume = 0
     private var isMutedForSpeech = false
+
+    private var mediaPlayer: MediaPlayer? = null
+    private var alarmJob: Job? = null
 
     // OSMDroid Map
     private lateinit var mapView: MapView
@@ -497,6 +505,17 @@ class DeviceActivity : AppCompatActivity(), BLEManager.BLEListener {
             } else {
                 Log.d("BLE", "⏳ HELLO detected but debounce active (wait 3s)")
             }
+        } else if (message.equals("SOS", ignoreCase = true)) {
+            Log.d("BLE", "========================================")
+            Log.d("BLE", "🆘 'SOS' DETECTED from ESP32!")
+            Log.d("BLE", "========================================")
+
+            runOnUiThread {
+                lastMessageText.text = "Detected 'SOS'!"
+                Toast.makeText(this, "SOS Received! Triggering alarm...", Toast.LENGTH_LONG).show()
+                startSOSAlert()
+                callEmergencyNumber()
+            }
         }
 
         // ====================================================================
@@ -701,6 +720,55 @@ class DeviceActivity : AppCompatActivity(), BLEManager.BLEListener {
         }
     }
 
+    // --- SOS Logic Methods ---
+    private fun startSOSAlert() {
+        playSOSTone()
+        vibrateDevice()
+    }
+
+    private fun playSOSTone() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.sos_sound)
+        mediaPlayer?.isLooping = true
+        mediaPlayer?.start()
+
+        alarmJob = CoroutineScope(Dispatchers.Main).launch {
+            delay(60_000)
+            stopSOSTone()
+        }
+    }
+
+    private fun stopSOSTone() {
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+
+    private fun vibrateDevice() {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val pattern = longArrayOf(0, 500, 300, 500, 300)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val effect = VibrationEffect.createWaveform(pattern, 0)
+            vibrator.vibrate(effect)
+        } else {
+            vibrator.vibrate(pattern, 0)
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(60_000)
+            vibrator.cancel()
+        }
+    }
+
+    private fun callEmergencyNumber() {
+        val prefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val emergencyNumber = prefs.getString("emergency_number", "112") ?: "112"
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$emergencyNumber")
+        }
+        startActivity(intent)
+    }
+
     override fun onResume() {
         super.onResume()
         mapView.onResume()
@@ -720,6 +788,12 @@ class DeviceActivity : AppCompatActivity(), BLEManager.BLEListener {
         bleManager.disconnect()
         speechRecognizer?.destroy()
         speechRecognizer = null
+        
+        stopSOSTone()
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.cancel()
+        alarmJob?.cancel()
+
         // ========================================================================
         // [VOSK - DISABLED] Audio cleanup — kept for future raw audio mode
         // audioTrack?.stop()

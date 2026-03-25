@@ -107,6 +107,10 @@ class MainActivity : AppCompatActivity() {
             startSOSAlert()
             callEmergencyNumber()
         }
+        sosButton.setOnLongClickListener {
+            SOSLongPressManager.triggerSOS(this)
+            true
+        }
 
         val settingsButton = findViewById<android.view.View>(R.id.btnSettings)
         settingsButton.setOnClickListener {

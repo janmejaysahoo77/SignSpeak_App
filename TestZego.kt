@@ -1,0 +1,1 @@
+import com.zegocloud.uikit.prebuilt.livestreaming.ZegoUIKitPrebuiltLiveStreamingConfig; fun main() { println(" Fields:\); ZegoUIKitPrebuiltLiveStreamingConfig::class.java.declaredFields.forEach { println(it.name) } }

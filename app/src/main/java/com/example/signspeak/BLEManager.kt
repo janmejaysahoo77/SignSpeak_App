@@ -91,6 +91,17 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
     private val gattCallback = object : BluetoothGattCallback() {
         override fun onConnectionStateChange(gatt: BluetoothGatt, status: Int, newState: Int) {
             Log.d("BLE", "Connection state changed → status: $status, newState: $newState")
+            
+            if (status != BluetoothGatt.GATT_SUCCESS) {
+                Log.e("BLE", "GATT Error (status: $status). Disconnecting...")
+                bleListener.onError("GATT Error ($status)")
+                gatt.close()
+                if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                    bleListener.onDisconnected()
+                }
+                return
+            }
+
             if (newState == BluetoothProfile.STATE_CONNECTED) {
                 Log.d("BLE", "Connected to GATT server")
                 bleListener.onConnected()
@@ -99,11 +110,16 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
                 // Requesting large MTUs (512) can crash some ESP32 cores upon connection!
                 handler.postDelayed({
                     Log.d("BLE", "Discovering services immediately (No MTU stretch needed for text)...")
-                    gatt.discoverServices()
+                    try {
+                        gatt.discoverServices()
+                    } catch (e: SecurityException) {
+                        Log.e("BLE", "Missing BLUETOOTH_CONNECT permission", e)
+                    }
                 }, 500)
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 Log.d("BLE", "Disconnected from GATT server")
                 bleListener.onDisconnected()
+                gatt.close()
             }
         }
 
@@ -251,7 +267,16 @@ class BLEManager(private val context: Context, private val bleListener: BLEListe
 
     fun connect(device: BluetoothDevice) {
         Log.d("BLE", "Connecting to device: ${device.name} (${device.address})...")
-        bluetoothGatt = device.connectGatt(context, false, gattCallback)
+        try {
+            bluetoothGatt = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                device.connectGatt(context, false, gattCallback, BluetoothDevice.TRANSPORT_LE)
+            } else {
+                device.connectGatt(context, false, gattCallback)
+            }
+        } catch (e: SecurityException) {
+            Log.e("BLE", "Missing BLUETOOTH_CONNECT permission", e)
+            bleListener.onError("Missing permission to connect")
+        }
     }
 
     fun disconnect() {

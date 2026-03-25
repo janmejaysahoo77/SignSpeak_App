@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="4dp"
+    android:background="?attr/selectableItemBackground">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="2dp">
+        <ImageView
+            android:id="@+id/ivSuggestedProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_person_placeholder" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvSuggestedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textColor="#e4dffc"
+        android:textSize="11sp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:maxWidth="72dp"
+        android:gravity="center"
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/btnSuggestedFollow"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:text="Follow"
+        android:textSize="10sp"
+        android:textColor="#d3bcfc"
+        android:backgroundTint="#2a244d"
+        app:cornerRadius="14dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="72dp"
+        android:paddingHorizontal="8dp"
+        android:layout_marginTop="4dp" />
+
+</LinearLayout>
